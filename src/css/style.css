@@ -23,6 +23,8 @@ h2 {
 
 .main-container {
     background: purple;
+    display: flex;
+    flex-direction: row;
 }
 
 .container {
@@ -42,12 +44,13 @@ h2 {
     background: #fff;
     border: none;
     border-radius: 8px;
-    font-size: 1.5em;
+    font-size: 1.3em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
     font-weight: 600;
     height: 3em;
+    margin: 10px;
 }
 
 .reset:focus {
@@ -97,4 +100,31 @@ h2 {
 .boxOpen:after,
 .boxMatch:after {
     transform: rotateY(180deg);
+}
+
+.score-board-container {
+    height: 460px;
+    width: 300px;
+    background: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.score-board {
+    padding: 20px;
+}
+
+h3 {
+    font-size: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.history {
+    height: 300px;
+    width: 250px;
+    background: white;
 }
