@@ -5,7 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript - Memory Game</title>
     <link rel="stylesheet" href="./src/css/style.css" />
-    <script src="./src/js/app.js"></script>
+    <script src="./src/js/app.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h2>Memory Game</h2>
+    </header>
+
+    <main class="main-container">
+      <!--Spelplanen-->
+      <div class="container">
+        <div class="game"></div>
+        <button class="reset" onclick="window.location.reload();">
+          Reset Game
+        </button>
+      </div>
+      <!--Poängtavlan-->
+      <div class="score-board-container"></div>
+    </main>
+  </body>
 </html>
