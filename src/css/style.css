@@ -79,27 +79,38 @@ h2 {
     font-size: 3em;
     background: #fff;
     transform: rotateY(180deg);
-    transition: 0.25s;
+    transition: transform 0.5s;
+    box-shadow: 0 0 0 white;
+    border-radius: 10px;
 }
 
-.item.boxOpen {
+.boxOpen {
     transform: rotateY(0deg);
+    transition: transform 0.5s;
 }
 
 .item:after {
     content: '';
     position: absolute;
     inset: 0;
-    opacity: 0.6;
+    /* opacity: 0.6; */
     background: brown;
-    transition: 0.25s;
+    transition: transform 0.5s;
     transform: rotateY(0deg);
     backface-visibility: hidden;
+    border-radius: 10px;
 }
 
 .boxOpen:after,
 .boxMatch:after {
     transform: rotateY(180deg);
+    transition: transform 0.5s;
+}
+
+.boxMatch {
+    transform: rotateY(-720deg);
+    transition: transform 0.5s, box-shadow 1.5s;
+    box-shadow: 0 0 20px rgb(255, 196, 129);
 }
 
 .score-board-container {
@@ -131,12 +142,17 @@ h3 {
     width: 250px;
     background: white;
     color: #ff9100;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items:baseline;
 }
 
 .history h4 {
     font-size: 1.5em;
     padding: 8px;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .line-thing {
