@@ -11,48 +11,62 @@
 
 // console.log('Hello!');
 
+// Definiera emojis som ett objekt med tillhörande poäng
+const emojis = {
+    "🌼": 10,
+    "🚗": 20,
+    "🤡": 15,
+    "🐵": 25,
+    "💎": 30,
+    "💣": 5,
+    "🍟": 8,
+    "🍄": 12
+};
+
 let player1Registered = false;
 let player2Registered = false;
 
 function startGame() {
     const player1Name = document.getElementById('player1-name').value;
     const player2Name = document.getElementById('player2-name').value;
-  
+
     if (player1Name && player2Name) {
-      localStorage.setItem('player1Name', player1Name);
-      localStorage.setItem('player2Name', player2Name);
-  
-      player1Registered = true;
-      player2Registered = true;
-  
-      document.getElementById('pre-menu').style.display = 'none';
-    document.querySelector('.main-container').style.display = 'flex';
+        localStorage.setItem('player1Name', player1Name);
+        localStorage.setItem('player2Name', player2Name);
 
-     // Hittar .score-board och binder platsen till variabel scoreBoard
-     const scoreBoard = document.querySelector('.score-board');
+        player1Registered = true;
+        player2Registered = true;
 
-     // Uppdatera HTML för att visa spelarnas namn
-     scoreBoard.innerHTML = `
-     <h3>Score</h3>
-         <div class="player">
-             <div class="player-name">${player1Name}</div>
-             <p>:</p>
-             <div class="player-score">0</div>
-         </div>
-         <div class="player">
-             <div class="player-name">${player2Name}</div>
-             <p>:</p>
-             <div class="player-score">0</div>
-         </div>
-     `;
+        document.getElementById('pre-menu').style.display = 'none';
+        document.querySelector('.main-container').style.display = 'flex';
 
-    const emojis = ["🌼", "🌼", "🚗", "🚗", "🤡", "🤡", "🐵", "🐵", "💎", "💎", "💣", "💣", "🍟", "🍟", "🍄", "🍄"];
+        const scoreBoard = document.querySelector('.score-board');
 
-    // Shuffle emojis - tar emojis array och ändrar ordningen
-    let shuffleEmojis = emojis.sort(() => (Math.random() > 0.5) ? 1 : -1);
+        scoreBoard.innerHTML = `
+            <h3>Score</h3>
+            <div class="player">
+                <div class="player-name">${player1Name}</div>
+                <p>:</p>
+                <div class="player-score">0</div>
+            </div>
+            <div class="player">
+                <div class="player-name">${player2Name}</div>
+                <p>:</p>
+                <div class="player-score">0</div>
+            </div>
+        `;
 
-    // Hittar .game och binder platsen till variabel gameContainer
-    const gameContainer = document.querySelector('.game');
+        const gameContainer = document.querySelector('.game');
+        const emojisArray = Object.keys(emojis); // Hämta emoji-nycklarna från objektet
+
+        // Duplicera varje emoji för att skapa par
+        const emojiPairs = emojisArray.reduce((acc, emoji) => {
+            acc.push(emoji, emoji);
+            return acc;
+        }, []);
+
+        // Shuffle emoji-par
+        let shuffleEmojis = emojiPairs.sort(() => (Math.random() > 0.5) ? 1 : -1);
 
     //Lägga ut korten efter shuffleEmojus-array
     for (let i = 0; i < shuffleEmojis.length; i++) {
@@ -82,7 +96,7 @@ function startGame() {
                         document.querySelectorAll('.boxOpen')[0].classList.remove('boxOpen');
 
                         //Om alla korten som har classen 'boxMatch', så är spelet över -- emoji.length ger det totala antalet kort, shuffleEmojis.length fungerar också.
-                        if(document.querySelectorAll('.boxMatch').length == emojis.length) {
+                        if(document.querySelectorAll('.boxMatch').length == shuffleEmojis.length) {
                             alert('You got em all!');
                         }
                     } else {
