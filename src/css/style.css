@@ -157,7 +157,7 @@ h3 {
     border-radius: 10px;
     border: 3px solid #ffc982;
     box-shadow: 0 0 14px #ff9100;
-  }
+}
 
 .pre-menu button {
     padding: 15px 20px;
@@ -173,30 +173,35 @@ h3 {
     height: 3em;
     margin: 10px;
 }
-  form {
+form {
     margin-bottom: 10px;
     margin-top: 10px;
     color: white;    
-  }
-  
-  label {
+}
+
+label {
     display: block;
     margin-bottom: 5px;
     font-size: 1.3em;
 }
-  
-  input {
+
+input {
     width: 200px;
     padding: 5px;
     margin-bottom: 15px;
     border-radius: 7px;
     border: 2px solid #ffc982;
-  }
+}
 
-  .player {
+.player {
     display: flex;
     flex-direction: row;
     font-size: 1.2em;
     color: #fff;
     margin-top: 10px;
-  }
+}
+
+.active-player {
+    color: #ff0000; 
+    font-weight: bold;
+}

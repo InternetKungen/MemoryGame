@@ -26,6 +26,25 @@ const emojis = {
 let player1Registered = false;
 let player2Registered = false;
 
+// Skapa ett objekt för att hålla reda på spelarnas poäng
+const playerScores = {
+    player1: 0,
+    player2: 0
+};
+
+function updateScore(player, points) {
+    // Uppdatera poängen för den angivna spelaren
+    playerScores[player] += points;
+
+    // Uppdatera score-board
+    const playerScoreElement = document.querySelector(`.${player} .player-score`);
+    if (playerScoreElement) {
+        playerScoreElement.textContent = playerScores[player];
+    }
+    console.log(`Updating score for ${player} by ${points}. New score: ${playerScores[player]}`);
+
+}
+
 function startGame() {
     const player1Name = document.getElementById('player1-name').value;
     const player2Name = document.getElementById('player2-name').value;
@@ -44,20 +63,24 @@ function startGame() {
 
         scoreBoard.innerHTML = `
             <h3>Score</h3>
-            <div class="player">
+            <div class="player player1">
                 <div class="player-name">${player1Name}</div>
                 <p>:</p>
                 <div class="player-score">0</div>
             </div>
-            <div class="player">
+            <div class="player player2">
                 <div class="player-name">${player2Name}</div>
                 <p>:</p>
                 <div class="player-score">0</div>
             </div>
         `;
 
+        // Add the .active-player class to the first player by default
+    document.querySelector('.player.player1 .player-name').classList.add('active-player');
+
         const gameContainer = document.querySelector('.game');
-        const emojisArray = Object.keys(emojis); // Hämta emoji-nycklarna från objektet
+        const emojisArray = Object.keys(emojis);
+ // Hämta emoji-nycklarna från objektet
 
         // Duplicera varje emoji för att skapa par
         const emojiPairs = emojisArray.reduce((acc, emoji) => {
@@ -119,6 +142,79 @@ function startGame() {
 
 // Denna kod körs när sidan laddas
 document.addEventListener('DOMContentLoaded', function () {
-  // Om du vill visa registreringsmenyn när sidan laddas kan du kommentera bort den här raden
-  document.querySelector('.main-container').style.display = 'none';
+    // Om du vill visa registreringsmenyn när sidan laddas kan du kommentera bort den här raden
+    document.querySelector('.main-container').style.display = 'none';
+  });
+
+
+// Funktion för att byta den aktiva spelaren på poängtavlan
+function toggleActivePlayer() {
+    const player1NameElement = document.querySelector('.player.player1 .player-name');
+    const player2NameElement = document.querySelector('.player.player2 .player-name');
+
+    player1NameElement.classList.toggle('active-player');
+    player2NameElement.classList.toggle('active-player');
+}
+
+// Funktion för att hantera när ett par matchas
+function handleMatchedPair() {
+    // Hämta de två öppna korten
+    console.log("Hello!")
+    const openCards = document.querySelectorAll('.boxOpen');
+
+    // Kontrollera att det är ett par (två öppna kort)
+    if (openCards.length === 2) {
+        const emoji1 = openCards[0].innerHTML;
+        const emoji2 = openCards[1].innerHTML;
+
+        // Kontrollera om de två öppna korten har samma emoji
+        if (emoji1 === emoji2) {
+            // Hämta poängen för den matchade emojin
+            const points = emojis[emoji1];
+
+            // Hämta den nuvarande spelarens namn (från localStorage)
+            const currentPlayer = localStorage.getItem('currentPlayer');
+
+            // Uppdatera poängen för den aktuella spelaren
+            updateScore(currentPlayer, points);
+
+            // Ta bort classen 'boxOpen' från matchade korten
+            openCards.forEach(card => card.classList.remove('boxOpen'));
+
+            // Lägg till classen 'boxMatch' på matchade par
+            openCards.forEach(card => card.classList.add('boxMatch'));
+
+            // Toggle the active player after each pair is matched
+            toggleActivePlayer();
+
+            // Kontrollera om alla par matchats
+            if (document.querySelectorAll('.boxMatch').length === emojisArray.length * 2) {
+                // Alla par matchade, spelet är över
+                alert('Congratulations! You matched all pairs. Game Over!');
+            }
+        } else {
+            // Annars - Flippa tillbaka korten efter en kort fördröjning
+            setTimeout(() => {
+                openCards.forEach(card => card.classList.remove('boxOpen'));
+                // Toggle the active player after flipping back the cards
+                toggleActivePlayer();
+            }, 500);
+        }
+    }
+}
+
+// Set up event delegation on the game container
+const gameContainer = document.querySelector('.game');
+gameContainer.addEventListener('click', function (event) {
+    const clickedElement = event.target;
+
+    // Kontrollera om klicket var på ett kort och om det inte redan har matchats eller är öppet
+    if (clickedElement.classList.contains('item') && !clickedElement.classList.contains('boxMatch') && !clickedElement.classList.contains('boxOpen')) {
+        clickedElement.classList.add('boxOpen');
+
+        // Anropa funktionen när ett par matchas efter en fördröjning
+        setTimeout(() => {
+            handleMatchedPair();
+        }, 500);
+    }
 });
