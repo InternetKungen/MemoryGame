@@ -115,6 +115,7 @@ h2 {
 .score-board {
     flex-grow: 2;
     padding: 20px;
+    align-self: flex-start;
 }
 
 h3 {
@@ -130,3 +131,57 @@ h3 {
     width: 250px;
     background: white;
 }
+
+.pre-menu {
+    text-align: center;
+    margin-top: 50px;
+    /* height: 440px;
+    width: 800px; */
+    background: rgb(255, 145, 0);
+    padding: 25px;
+    border-radius: 10px;
+    border: 3px solid #ffc982;
+    box-shadow: 0 0 14px #ff9100;
+  }
+
+.pre-menu button {
+    padding: 15px 20px;
+    color: rgb(40, 56, 75);
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    height: 3em;
+    margin: 10px;
+}
+  form {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: white;    
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.3em;
+}
+  
+  input {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 15px;
+    border-radius: 7px;
+    border: 2px solid #ffc982;
+  }
+
+  .player {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2em;
+    color: #fff;
+    margin-top: 10px;
+  }

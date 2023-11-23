@@ -11,21 +11,35 @@
     <header>
       <h2>Memory Game</h2>
     </header>
+    <main>
+      <div id="pre-menu" class="pre-menu">
+        <h3>Player Registration</h3>
+        <form id="player-form-1">
+          <label for="player1-name">Player 1 Name:</label>
+          <input type="text" id="player1-name" name="player1-name" required />
+        </form>
 
-    <main class="main-container">
-      <!--Spelplanen-->
-      <div class="container">
-        <div class="game"></div>
+        <form id="player-form-2">
+          <label for="player2-name">Player 2 Name:</label>
+          <input type="text" id="player2-name" name="player2-name" required />
+        </form>
+
+        <button onclick="startGame()">Start Game</button>
       </div>
-      <!--Poängtavlan-->
-      <div class="score-board-container">
-        <div class="score-board">
-          <h3>Score</h3>
+      <div class="main-container">
+        <!-- Spelplanen -->
+        <div class="container">
+          <div class="game"></div>
         </div>
-        <div class="history"></div>
-        <button class="reset" onclick="window.location.reload();">
-          Reset Game
-        </button>
+
+        <!-- Poängtavlan -->
+        <div class="score-board-container">
+          <div class="score-board"></div>
+          <div class="history"></div>
+          <button class="reset" onclick="window.location.reload();">
+            Reset Game
+          </button>
+        </div>
       </div>
     </main>
   </body>
