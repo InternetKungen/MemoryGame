@@ -130,6 +130,21 @@ h3 {
     height: 300px;
     width: 250px;
     background: white;
+    color: #ff9100;
+}
+
+.history h4 {
+    font-size: 1.5em;
+    padding: 8px;
+    text-align: center;
+}
+
+.line-thing {
+    display: block;
+    height: 2px;
+    width: 80%;
+    background: #ff9100;
+    margin-left: 10%;
 }
 
 .pre-menu {
