@@ -113,6 +113,7 @@ h2 {
 }
 
 .score-board {
+    flex-grow: 2;
     padding: 20px;
 }
 
@@ -124,6 +125,7 @@ h3 {
 }
 
 .history {
+    flex-grow: 1;
     height: 300px;
     width: 250px;
     background: white;
