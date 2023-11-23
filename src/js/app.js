@@ -5,7 +5,7 @@ const emojis = {
     clown: { name: "clown", image: "🤡", points: 15 },
     monkey: { name: "monkey", image: "🐵", points: 25 },
     diamond: { name: "diamond", image: "💎", points: 30 },
-    bomb: { name: "bomb", image: "💣", points: 1 },
+    bomb: { name: "bomb", image: "💣", points: -10 },
     fries: { name: "fries", image: "🍟", points: 8 },
     mushroom: { name: "mushroom", image: "🍄", points: 12 }
 };
@@ -66,27 +66,24 @@ function updateScore(player, emojiName) {
     console.log(`Updating score for ${player} by ${points}. New score: ${playerScores[player]}`);
 }
 
+// Skriv ut till historik
 function printMatchHistory() {
     const historyContainer = document.querySelector('.history');
     historyContainer.innerHTML = `<h4>History</h4><div class="line-thing"></div>`;
 
     matchHistory.forEach((match, index) => {
-        // Skapa ett nytt element för varje match och lägg till det i historikcontainern
+        const playerName = localStorage.getItem(`${match.player}Name`);
         const historyItem = document.createElement('div');
-        historyItem.textContent = `Player ${match.player} found ${match.emojiName}`;
+        historyItem.textContent = `${index + 1}. Player ${playerName} found ${match.emojiName}`;
         historyContainer.appendChild(historyItem);
     });
 }
+
+
 function addToMatchHistory(player, emojiName) {
     matchHistory.push({ player, emojiName });
     printMatchHistory(); // Uppdatera matchhistoriken varje gång ett par matchas
 }
-
-// Denna kod körs när sidan laddas
-document.addEventListener('DOMContentLoaded', function () {
-    // Om du vill visa registreringsmenyn när sidan laddas kan du kommentera bort den här raden
-    document.querySelector('.main-container').style.display = 'none';
-});
 
 // Funktion för att hantera när ett par matchas
 function handleMatchedPair() {
@@ -218,6 +215,12 @@ function startGame() {
         alert('Please enter names for both players to start the game.');
     }
 }
+
+// Denna kod körs när sidan laddas - gömmer main-container
+document.addEventListener('DOMContentLoaded', function () {
+    // Om du vill visa registreringsmenyn när sidan laddas kan du kommentera bort den här raden
+    document.querySelector('.main-container').style.display = 'none';
+});
 
 // Set up event delegation on the game container
 const gameContainer = document.querySelector('.game');
