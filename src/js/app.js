@@ -52,25 +52,23 @@ function updateScore(player, emojiName) {
     // Uppdatera poängen för den angivna spelaren
     playerScores[player] += points;
 
-    // Lägg till i historiken
-    addToMatchHistory(player, emojiName);
-
     // Uppdatera score-board
     const playerScoreElement = document.querySelector(`.${player} .player-score`);
     if (playerScoreElement) {
         playerScoreElement.textContent = playerScores[player];
     }
 
-    // Skriv ut matchhistoriken
-    console.log('Match History:', matchHistory);
-    console.log(`Updating score for ${player} by ${points}. New score: ${playerScores[player]}`);
+    // // Skriv ut matchhistoriken
+    // console.log('Match History:', matchHistory);
+    // console.log(`Updating score for ${player} by ${points}. New score: ${playerScores[player]}`);
 }
 
-// Skriv ut till historik
+// Skriv ut till historik - uppdatera
 function printMatchHistory() {
     const historyContainer = document.querySelector('.history');
     historyContainer.innerHTML = `<h4>History</h4><div class="line-thing"></div>`;
 
+    //vad händer här? - en for loop - 
     matchHistory.forEach((match, index) => {
         const playerName = localStorage.getItem(`${match.player}Name`);
         const historyItem = document.createElement('div');
@@ -79,10 +77,10 @@ function printMatchHistory() {
     });
 }
 
-
+//lägg till matchHistory array
 function addToMatchHistory(player, emojiName) {
     matchHistory.push({ player, emojiName });
-    printMatchHistory(); // Uppdatera matchhistoriken varje gång ett par matchas
+    printMatchHistory();
 }
 
 // Funktion för att hantera när ett par matchas
