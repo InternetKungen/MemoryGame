@@ -266,7 +266,8 @@ input {
         outline: 1px double #ff0000;
     }
     50% {
-        outline: 5px double #ff9100;
+        outline: 10px double #ff9100;
+        z-index: 3;
     }
 }
 

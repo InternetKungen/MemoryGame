@@ -22,6 +22,7 @@ let playerScores = {
 let currentPlayer;
 let emojisArray; // Flytta deklarationen hit
 
+//Ladda PVP meny
 function loadPVPMenu() {
     document.querySelector('.main-menu').style.display = 'none';
     document.querySelector('.pre-menu').style.display = 'flex';
@@ -158,7 +159,7 @@ function handleMatchedPair() {
                 const player2Name = document.getElementById('player2-name').value;
 
                 if (playerScores.player1 == playerScores.player2) {
-                    showWinnerNotice('draw');
+                    showDrawNotice();
                 } else if (playerScores.player1 > playerScores.player2) {
                     showWinnerNotice(player1Name);
                 } else {
@@ -177,9 +178,20 @@ function handleMatchedPair() {
                     winnerNotice.innerHTML = winnerIs;
                     winnerNotice.style.display = 'flex';
 
-                    // Set a timeout to hide the winner notice after 5 seconds
+                    // Set a timeout to hide the winner notice after 3 seconds
                     setTimeout(() => {
                         winnerNotice.style.display = 'none';
+                    }, 3000);
+                }
+
+                function showDrawNotice() {
+                    let drawNotice = document.querySelector(".draw-notice");
+
+                    drawNotice.style.display = 'flex';
+
+                    // Set a timeout to hide the notice after 3 seconds
+                    setTimeout(() => {
+                        drawNotice.style.display = 'none';
                     }, 3000);
                 }
 
