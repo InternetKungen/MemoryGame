@@ -14,7 +14,7 @@ const emojis = {
 const matchHistory = [];
 
 // Skapa en array för att hålla reda på spelarnas poäng
-const playerScores = {
+let playerScores = {
     player1: 0,
     player2: 0
 };
@@ -72,7 +72,7 @@ function printMatchHistory() {
     matchHistory.forEach((match, index) => {
         const playerName = localStorage.getItem(`${match.player}Name`);
         const historyItem = document.createElement('div');
-        historyItem.textContent = `${index + 1}. Player ${playerName} found ${match.emojiName}`;
+        historyItem.textContent = `${index + 1}. ${playerName} found the ${match.emojiName}`;
         historyContainer.appendChild(historyItem);
     });
 }

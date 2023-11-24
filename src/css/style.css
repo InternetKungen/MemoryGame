@@ -2,7 +2,7 @@
     margin: 0; 
     padding: 0; 
     box-sizing: border-box;
-    font-family: monospace;
+    font-family: 'VT323', monospace;
 }
 
 body {
@@ -18,7 +18,7 @@ h2 {
     font-size: 3em;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.5em;
 }
 
 .main-container {
@@ -79,9 +79,17 @@ h2 {
     font-size: 3em;
     background: #fff;
     transform: rotateY(180deg);
-    transition: transform 0.5s;
+    transition: transform 0.5s, scale 0.3s;
     box-shadow: 0 0 0 white;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.item:hover {
+    scale: 1.01;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.363);
+    /* border: 5px double #ff9100; */
+    animation: colorOutline 0.5s ease-in-out infinite;
 }
 
 .boxOpen {
@@ -108,9 +116,12 @@ h2 {
 }
 
 .boxMatch {
+    /* animation: backgroundAnimation 0.01s ease-in-out 2; */
     transform: rotateY(-720deg);
-    transition: transform 0.5s, box-shadow 1.5s;
+    transition: transform 0.5s, box-shadow 1.5s, opacity 3s;
     box-shadow: 0 0 20px rgb(255, 196, 129);
+    opacity: 0;
+    cursor: default;
 }
 
 .score-board-container {
@@ -212,12 +223,59 @@ input {
 .player {
     display: flex;
     flex-direction: row;
-    font-size: 1.2em;
+    font-size: 1.3em;
     color: #fff;
     margin-top: 10px;
 }
 
 .active-player {
-    color: #ff0000; 
+    color: #c8ff00; 
     font-weight: bold;
+    animation: sizeAnimation 0.8s ease-in-out infinite, sizeAnimationOne 0.8s ease-in-out 1;
+}
+
+@keyframes sizeAnimation {
+    0%, 100% {
+        transform: scale(1);
+        outline: 0px dotted #ff00bf;
+    }
+    50% {
+        transform: scale(1.2);
+        outline: 4px double #00f7ff;
+    }
+}
+
+@keyframes sizeAnimationOne {
+    0%, 100% {
+        transform: scale(1);
+        color: #c8ff00;
+    }
+    50% {
+        transform: scale(1.5);
+        color: #ff00bf;
+    }
+}
+
+@keyframes colorOutline {
+    0%, 100% {
+        outline: 1px double #ff0000;
+    }
+    50% {
+        outline: 5px double #ff9100;
+    }
+}
+
+@keyframes backgroundAnimation {
+    0%, 100% {
+        background: #00f7ff;
+    }
+    25% {
+        background: #ff00c8;
+    }
+    50% {
+        background: #ff9100;
+    }
+    75% {
+        background: #33ff00;
+    }
 }
