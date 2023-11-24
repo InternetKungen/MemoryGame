@@ -11,7 +11,7 @@ const emojis = {
 };
 
 // Skapa en tom array för att hålla historiken över matchade par
-const matchHistory = [];
+let matchHistory = [];
 
 // Skapa en array för att hålla reda på spelarnas poäng
 let playerScores = {
@@ -128,36 +128,11 @@ function handleMatchedPair() {
 
                 // Alla par matchade, spelet är över
 
-                // Hämtar namnet på spelarna
-                // const player1Name = document.getElementById('player1-name').value;
-                // const player2Name = document.getElementById('player2-name').value;
-
-                // if (playerScores.player1 == playerScores.player2) {
-                //     document.querySelector('.draw-notice').style.display = 'flex';
-                // } else if (playerScores.player1 > playerScores.player2) {
-                //     let winnerNotice = document.querySelector(".winner-notice");
-                    
-                //     let winnerIs = `
-                //     <h3>${player1Name}</h3>
-                //     `;
-
-                //     winnerNotice.innerHTML = winnerIs;
-                //     document.querySelector('.winner-notice').style.display = 'flex';
-                    
-                // } else {
-                //     let winnerNotice = document.querySelector(".winner-notice");
-                    
-                //     let winnerIs = `
-                //     <h3>${player2Name}</h3>
-                //     `;
-                    
-                //     winnerNotice.innerHTML = winnerIs;
-                //     document.querySelector('.winner-notice').style.display = 'flex';
-                // }
-
+                // Hämtar namnet på spelarna                
                 const player1Name = document.getElementById('player1-name').value;
                 const player2Name = document.getElementById('player2-name').value;
 
+                //Utgör och skriver ut vinnaren
                 if (playerScores.player1 == playerScores.player2) {
                     showDrawNotice();
                 } else if (playerScores.player1 > playerScores.player2) {
@@ -181,6 +156,7 @@ function handleMatchedPair() {
                     // Set a timeout to hide the winner notice after 3 seconds
                     setTimeout(() => {
                         winnerNotice.style.display = 'none';
+                        restartGame();
                     }, 3000);
                 }
 
@@ -192,6 +168,7 @@ function handleMatchedPair() {
                     // Set a timeout to hide the notice after 3 seconds
                     setTimeout(() => {
                         drawNotice.style.display = 'none';
+                        restartGame();
                     }, 3000);
                 }
 
@@ -209,6 +186,31 @@ function handleMatchedPair() {
     } else {
         console.log('No matched pair found.');
     }
+}
+
+// Function to restart the game
+function restartGame() {
+    
+    //Reset History
+    matchHistory = [];
+    printMatchHistory();
+
+    // Skapa en array för att hålla reda på spelarnas poäng
+//     playerScores = {
+//     player1: 0,
+//     player2: 0
+// };
+
+    playerScores.player1 = 0;
+    playerScores.player2 = 0;
+
+    emojisArray = [];
+
+    const gameContainer = document.querySelector('.game');
+    gameContainer.innerHTML = ``;
+
+    // Then, start the game again
+    startGame();
 }
 
 // Funktion för att starta spelet
