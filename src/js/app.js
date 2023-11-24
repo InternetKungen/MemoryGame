@@ -195,17 +195,14 @@ function restartGame() {
     matchHistory = [];
     printMatchHistory();
 
-    // Skapa en array för att hålla reda på spelarnas poäng
-//     playerScores = {
-//     player1: 0,
-//     player2: 0
-// };
-
+    //Sätter spelarnas poäng till noll
     playerScores.player1 = 0;
     playerScores.player2 = 0;
 
+    //Tömmer array som representerar korten på plan
     emojisArray = [];
 
+    //Tar bort korten från html .game
     const gameContainer = document.querySelector('.game');
     gameContainer.innerHTML = ``;
 
