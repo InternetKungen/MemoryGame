@@ -22,6 +22,11 @@ let playerScores = {
 let currentPlayer;
 let emojisArray; // Flytta deklarationen hit
 
+function loadPVPMenu() {
+    document.querySelector('.main-menu').style.display = 'none';
+    document.querySelector('.pre-menu').style.display = 'flex';
+}
+
 // Aktiv spelare - toggle
 function toggleActivePlayer() {
     const player1NameElement = document.querySelector('.player.player1 .player-name');
@@ -85,7 +90,9 @@ function addToMatchHistory(player, emojiName) {
 
 // Funktion för att hantera när ett par matchas
 function handleMatchedPair() {
+
     console.log('Handling matched pair...');
+
     // Hämta de två öppna korten
     const openCards = document.querySelectorAll('.boxOpen');
     console.log('Open cards:', openCards);
@@ -117,8 +124,67 @@ function handleMatchedPair() {
 
             // Kontrollera om alla par matchats
             if (document.querySelectorAll('.boxMatch').length === emojisArray.length * 2) {
+
                 // Alla par matchade, spelet är över
-                alert('Congratulations! You matched all pairs. Game Over!');
+
+                // Hämtar namnet på spelarna
+                // const player1Name = document.getElementById('player1-name').value;
+                // const player2Name = document.getElementById('player2-name').value;
+
+                // if (playerScores.player1 == playerScores.player2) {
+                //     document.querySelector('.draw-notice').style.display = 'flex';
+                // } else if (playerScores.player1 > playerScores.player2) {
+                //     let winnerNotice = document.querySelector(".winner-notice");
+                    
+                //     let winnerIs = `
+                //     <h3>${player1Name}</h3>
+                //     `;
+
+                //     winnerNotice.innerHTML = winnerIs;
+                //     document.querySelector('.winner-notice').style.display = 'flex';
+                    
+                // } else {
+                //     let winnerNotice = document.querySelector(".winner-notice");
+                    
+                //     let winnerIs = `
+                //     <h3>${player2Name}</h3>
+                //     `;
+                    
+                //     winnerNotice.innerHTML = winnerIs;
+                //     document.querySelector('.winner-notice').style.display = 'flex';
+                // }
+
+                const player1Name = document.getElementById('player1-name').value;
+                const player2Name = document.getElementById('player2-name').value;
+
+                if (playerScores.player1 == playerScores.player2) {
+                    showWinnerNotice('draw');
+                } else if (playerScores.player1 > playerScores.player2) {
+                    showWinnerNotice(player1Name);
+                } else {
+                    showWinnerNotice(player2Name);
+                }
+
+                // Function to show winner notice
+                function showWinnerNotice(winnerName) {
+                    let winnerNotice = document.querySelector(".winner-notice");
+
+                    let winnerIs = `
+                        <h3>Winner!</h3>
+                        <h3>${winnerName}</h3>
+                    `;
+
+                    winnerNotice.innerHTML = winnerIs;
+                    winnerNotice.style.display = 'flex';
+
+                    // Set a timeout to hide the winner notice after 5 seconds
+                    setTimeout(() => {
+                        winnerNotice.style.display = 'none';
+                    }, 3000);
+                }
+
+                // alert('Congratulations! You matched all pairs. Game Over!');
+
             }
         } else {
             // Annars - Flippa tillbaka korten efter en kort fördröjning
@@ -218,6 +284,9 @@ function startGame() {
 document.addEventListener('DOMContentLoaded', function () {
     // Om du vill visa registreringsmenyn när sidan laddas kan du kommentera bort den här raden
     document.querySelector('.main-container').style.display = 'none';
+    document.querySelector('.pre-menu').style.display = 'none';
+    document.querySelector('.winner-notice').style.display = 'none';
+    document.querySelector('.draw-notice').style.display = 'none';
 });
 
 // Set up event delegation on the game container

@@ -18,6 +18,16 @@
       <h2>Memory Game</h2>
     </header>
     <main>
+      <div class="main-menu">
+        <h3>Main Menu</h3>
+        <button class="main-menu__option" onclick="loadPVPMenu()">
+          Player vs Player
+        </button>
+        <button class="main-menu__option" onclick="loadPVMMenu()">
+          Player vs Machine
+        </button>
+      </div>
+
       <div id="pre-menu" class="pre-menu">
         <h3>Player Registration</h3>
         <form id="player-form-1">
@@ -46,9 +56,18 @@
             <div class="line-thing"></div>
           </div>
           <button class="reset" onclick="window.location.reload();">
-            Reset Game
+            Quit to Main
+          </button>
+          <button class="play-again" onclick="window.location.reload();">
+            Play Again
           </button>
         </div>
+      </div>
+      <div class="winner-notice">
+        <h3>Winner!</h3>
+      </div>
+      <div class="draw-notice">
+        <h3>Draw!</h3>
       </div>
     </main>
   </body>
