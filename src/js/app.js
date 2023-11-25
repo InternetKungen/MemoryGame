@@ -307,29 +307,31 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.draw-notice').style.display = 'none';
 });
 
+
+//FEL CHECK-BUGG-TEST------------------
 // Set up event delegation on the game container
-const gameContainer = document.querySelector('.game');
-gameContainer.addEventListener('click', function (event) {
-    console.log('Click event received');
-    const clickedElement = event.target;
+// const gameContainer = document.querySelector('.game');
+// gameContainer.addEventListener('click', function (event) {
+//     console.log('Click event received');
+//     const clickedElement = event.target;
 
-    // Kontrollera om klicket var på ett kort och om det inte redan har matchats eller är öppet
-    if (clickedElement.classList.contains('item') && !clickedElement.classList.contains('boxMatch') && !clickedElement.classList.contains('boxOpen')) {
-        clickedElement.classList.add('boxOpen');
+//     // Kontrollera om klicket var på ett kort och om det inte redan har matchats eller är öppet
+//     if (clickedElement.classList.contains('item') && !clickedElement.classList.contains('boxMatch') && !clickedElement.classList.contains('boxOpen')) {
+//         clickedElement.classList.add('boxOpen');
 
-        // Anropa funktionen direkt utan timeout
-        console.log('Before handleMatchedPair is called');
-        handleMatchedPair();
-        console.log('After handleMatchedPair is called');
-    }
-});
+//         // Anropa funktionen direkt utan timeout
+//         console.log('Before handleMatchedPair is called');
+//         handleMatchedPair();
+//         console.log('After handleMatchedPair is called');
+//     }
+// });
 
-// Skapa en ny klickhändelse för varje kort separat
-const cards = document.querySelectorAll('.item');
-cards.forEach((card) => {
-    card.addEventListener('click', () => {
-        console.log('Card clicked separately');
-        // Lägg till detta för att anropa handleMatchedPair även när ett kort klickas separat
-        handleMatchedPair();
-    });
-});
+// // Skapa en ny klickhändelse för varje kort separat
+// const cards = document.querySelectorAll('.item');
+// cards.forEach((card) => {
+//     card.addEventListener('click', () => {
+//         console.log('Card clicked separately');
+//         // Lägg till detta för att anropa handleMatchedPair även när ett kort klickas separat
+//         handleMatchedPair();
+//     });
+// });
