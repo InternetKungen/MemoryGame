@@ -19,9 +19,13 @@ let playerScores = {
     player2: 0
 };
 
+//Aktiv spelare
 let currentPlayer;
+
+//Kortens sortering
 let emojisArray; // Flytta deklarationen hit
 
+//VS Comp switch
 let isComputerPlayer = false;
 
 //Ladda PVP meny
@@ -38,9 +42,16 @@ function loadPVMMenu() {
     // Set the name "Computer" for player2
     document.getElementById('player2-name').value = 'Computer';
 
-    isComputerPlayer = true;
+    isComputerPlayer = true;   
+}
 
-    document.getElementById('player1-name').value = 'Bullen';
+function startGamePVM() {
+    //Namnet från PVM formuläret överförst till player1-name. 
+    const playerNamePVM = document.getElementById('player1-name-pvm').value;
+    
+    document.getElementById('player1-name').value = playerNamePVM;
+
+    startGame();
 }
 
 
@@ -331,16 +342,23 @@ function playComputerMoves() {
         if (currentPlayer === 'player2') {
             // Gör datorns drag genom att klicka på två slumpmässiga kort
             const unopenedCards = document.querySelectorAll('.item:not(.boxOpen):not(.boxMatch)');
-            const randomCardIndices = getRandomCardIndices(unopenedCards.length);
-            randomCardIndices.forEach(index => unopenedCards[index].click());
+            
+            // Kontrollera om det finns tillräckligt med oöppnade kort för datorn att spela
+            if (unopenedCards.length >= 2) {
+                const randomCardIndices = getRandomCardIndices(unopenedCards.length);
+                randomCardIndices.forEach(index => unopenedCards[index].click());
 
-            // Kontrollera igen om det fortfarande är datorns tur efter att draget är klart
-            if (currentPlayer === 'player2') {
-                // Om ja, kör playComputerMoves igen
-                playComputerMoves();
+                // Kontrollera igen om det fortfarande är datorns tur efter att draget är klart
+                if (currentPlayer === 'player2') {
+                    // Om ja, kör playComputerMoves igen
+                    playComputerMoves();
+                }
+            } else {
+                // Om det inte finns tillräckligt med oöppnade kort, avsluta datorns tur
+                toggleActivePlayer();
             }
         }
-    }, 1000); // Justera fördröjningen vid behov
+    }, 800); // Justera fördröjningen vid behov
 }
 
 // Funktion för att generera slumpmässiga index för kort
