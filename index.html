@@ -18,6 +18,7 @@
       <h2>Memory Game</h2>
     </header>
     <main>
+      <!-- MAIN MENU -->
       <div class="main-menu">
         <h3>Main Menu</h3>
         <button class="main-menu__option" onclick="loadPVPMenu()">
@@ -28,6 +29,7 @@
         </button>
       </div>
 
+      <!-- PVP MENU -->
       <div id="pre-menu" class="pre-menu">
         <h3>Player Registration</h3>
         <form id="player-form-1">
@@ -43,16 +45,22 @@
         <button onclick="startGame()">Start Game</button>
       </div>
 
-      <div class="pvm-menu">
+      <!-- PVM MENU-->
+      <div class="pvm-menu" id="pvm-menu">
         <h3>Player Registration</h3>
-        <form id="player-form-1">
-          <label for="player1-name">Player 1 Name:</label>
-          <input type="text" id="player1-name" name="player1-name" required />
+        <form id="player-form-3">
+          <label for="player1-name-pvm">Player 1 Name:</label>
+          <input
+            type="text"
+            id="player1-name-pvm"
+            name="player1-name-pvm"
+            required
+          />
         </form>
-
         <button onclick="startGame()">Start Game</button>
       </div>
 
+      <!-- SPELET -->
       <div class="main-container">
         <!-- Spelplanen -->
         <div class="container">
@@ -72,9 +80,13 @@
           <button class="play-again" onclick="restartGame()">Play Again</button>
         </div>
       </div>
+
+      <!--WINNER NOTICE TEMPLATE-->
       <div class="winner-notice">
         <h3>Winner!</h3>
       </div>
+
+      <!--DRAW NOTICE-->
       <div class="draw-notice">
         <h3>Draw!</h3>
       </div>

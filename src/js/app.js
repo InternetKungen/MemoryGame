@@ -22,6 +22,8 @@ let playerScores = {
 let currentPlayer;
 let emojisArray; // Flytta deklarationen hit
 
+let isComputerPlayer = false;
+
 //Ladda PVP meny
 function loadPVPMenu() {
     document.querySelector('.main-menu').style.display = 'none';
@@ -32,7 +34,15 @@ function loadPVPMenu() {
 function loadPVMMenu() {
     document.querySelector('.main-menu').style.display = 'none';
     document.querySelector('.pvm-menu').style.display = 'flex';
+
+    // Set the name "Computer" for player2
+    document.getElementById('player2-name').value = 'Computer';
+
+    isComputerPlayer = true;
+
+    document.getElementById('player1-name').value = 'Bullen';
 }
+
 
 // Aktiv spelare - toggle
 function toggleActivePlayer() {
@@ -50,6 +60,10 @@ function toggleActivePlayer() {
         currentPlayer = 'player1';
     }
     console.log('Click event received - toggleActivePlayer');
+
+    if (isComputerPlayer && currentPlayer === 'player2') {
+        playComputerMoves();
+    }
 }
 
 // Funktion för att lägga till ett matchat par i historiken
@@ -219,8 +233,14 @@ function restartGame() {
 // Funktion för att starta spelet
 function startGame() {
     // Hämtar namnet på spelarna
-    const player1Name = document.getElementById('player1-name').value;
-    const player2Name = document.getElementById('player2-name').value;
+    // const player1Name = document.getElementById('player1-name').value;
+    // const player2Name = document.getElementById('player2-name').value;
+
+    const player1NameInput = document.getElementById('player1-name');
+    const player2NameInput = document.getElementById('player2-name');
+    
+    const player1Name = player1NameInput.value;
+    const player2Name = player2NameInput.value;
 
     console.log('Player 1 Name:', player1Name);
     console.log('Player 2 Name:', player2Name);
@@ -233,6 +253,7 @@ function startGame() {
         player2Registered = true;
 
         document.getElementById('pre-menu').style.display = 'none';
+        document.getElementById('pvm-menu').style.display = 'none';
         document.querySelector('.main-container').style.display = 'flex';
 
         const scoreBoard = document.querySelector('.score-board');
@@ -292,9 +313,46 @@ function startGame() {
             gameContainer.appendChild(box);
         }
 
+         // Check if the second player is a computer and trigger computer moves
+        if (isComputerPlayer && currentPlayer !== 'player1') {
+            playComputerMoves();
+        }
     } else {
         alert('Please enter names for both players to start the game.');
     }
+}
+
+//Datorn spelar
+function playComputerMoves() {
+    console.log('Computer is playing...');
+    // Fördröjningen innan datorn spelar kan anpassas efter behov
+    setTimeout(() => {
+        // Kontrollera om det fortfarande är datorns tur
+        if (currentPlayer === 'player2') {
+            // Gör datorns drag genom att klicka på två slumpmässiga kort
+            const unopenedCards = document.querySelectorAll('.item:not(.boxOpen):not(.boxMatch)');
+            const randomCardIndices = getRandomCardIndices(unopenedCards.length);
+            randomCardIndices.forEach(index => unopenedCards[index].click());
+
+            // Kontrollera igen om det fortfarande är datorns tur efter att draget är klart
+            if (currentPlayer === 'player2') {
+                // Om ja, kör playComputerMoves igen
+                playComputerMoves();
+            }
+        }
+    }, 1000); // Justera fördröjningen vid behov
+}
+
+// Funktion för att generera slumpmässiga index för kort
+function getRandomCardIndices(cardCount) {
+    const indices = [];
+    while (indices.length < 2) {
+        const randomIndex = Math.floor(Math.random() * cardCount);
+        if (!indices.includes(randomIndex)) {
+            indices.push(randomIndex);
+        }
+    }
+    return indices;
 }
 
 // Denna kod körs när sidan laddas - gömmer main-container
