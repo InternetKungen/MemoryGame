@@ -28,6 +28,7 @@ function loadPVPMenu() {
     document.querySelector('.pre-menu').style.display = 'flex';
 }
 
+//Ladda PVM meny
 function loadPVMMenu() {
     document.querySelector('.main-menu').style.display = 'none';
     document.querySelector('.pvm-menu').style.display = 'flex';
