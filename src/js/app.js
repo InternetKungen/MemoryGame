@@ -28,6 +28,11 @@ function loadPVPMenu() {
     document.querySelector('.pre-menu').style.display = 'flex';
 }
 
+function loadPVMMenu() {
+    document.querySelector('.main-menu').style.display = 'none';
+    document.querySelector('.pvm-menu').style.display = 'flex';
+}
+
 // Aktiv spelare - toggle
 function toggleActivePlayer() {
     const player1NameElement = document.querySelector('.player.player1 .player-name');
@@ -296,6 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Om du vill visa registreringsmenyn när sidan laddas kan du kommentera bort den här raden
     document.querySelector('.main-container').style.display = 'none';
     document.querySelector('.pre-menu').style.display = 'none';
+    document.querySelector('.pvm-menu').style.display = 'none';
     document.querySelector('.winner-notice').style.display = 'none';
     document.querySelector('.draw-notice').style.display = 'none';
 });

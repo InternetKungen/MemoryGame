@@ -174,6 +174,7 @@ h3 {
     margin-left: 10%;
 }
 
+.pvm-menu,
 .main-menu,
 .pre-menu {
     text-align: center;
@@ -190,6 +191,7 @@ h3 {
     height: 460px;
     width: 600px;
 }
+.pvm-menu button,
 .main-menu button,
 .pre-menu button {
     padding: 15px 20px;
@@ -306,12 +308,15 @@ input {
 @keyframes fadeInOutNotice {
     0% {
         opacity: 0;
-        bottom: 30%
-
+        bottom: 30%;
+        box-shadow: 0 0 14px #ff9100;
     }
     25% {
         opacity: 1;
         bottom: 50%;
+    }
+    50% {
+        box-shadow: 0 0 300px #ffffff;
     }
     90% {
         opacity: 1;
@@ -320,5 +325,6 @@ input {
     100% {
         opacity: 0;
         bottom: 70%;
+        box-shadow: 0 0 14px #ff9100;
     }
 }
