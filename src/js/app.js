@@ -27,6 +27,7 @@ let emojisArray; // Flytta deklarationen hit
 
 //VS Comp switch
 let isComputerPlayer = false;
+let hardMode = false;
 
 //Ladda PVP meny
 function loadPVPMenu() {
@@ -45,12 +46,24 @@ function loadPVMMenu() {
     isComputerPlayer = true;   
 }
 
+
+
 function startGamePVM() {
     //Namnet från PVM formuläret överförst till player1-name. 
     const playerNamePVM = document.getElementById('player1-name-pvm').value;
     
     document.getElementById('player1-name').value = playerNamePVM;
 
+    startGame();
+}
+
+function startGamePVMHard() {
+    //Namnet från PVM formuläret överförst till player1-name. 
+    const playerNamePVM = document.getElementById('player1-name-pvm').value;
+    
+    document.getElementById('player1-name').value = playerNamePVM;
+
+    hardMode = true;
     startGame();
 }
 
@@ -333,11 +346,15 @@ function startGame() {
             //On-click på box/div-elementet...
             box.onclick = function () {
                 console.log('Card clicked!');
+                // if (isComputerPlayer && blockOnClick) {
+                //     return; // Blockera klick om det är datorns tur
+                // }
                 //lägg till class 'boxOpen' på div-elementet
                 this.classList.add('boxOpen');
                 
                 //Anropa funktionen direkt utan timeout
                 handleMatchedPair();
+                
             }
 
             gameContainer.appendChild(box);
@@ -406,14 +423,11 @@ function startGame() {
     }
 }
 
+let memory = [];
 
 //Datorn spelar
 function playComputerMoves() {
     console.log('Computer is playing...');
-
-    // // Blockera onclick-händelsen för hela spelplanen (.game)
-    // const gameContainer = document.querySelector('.game');
-    // gameContainer.onclick = null;
 
     // Fördröjningen innan datorn spelar kan anpassas efter behov
     setTimeout(() => {
@@ -424,6 +438,31 @@ function playComputerMoves() {
             
             // Kontrollera om det finns tillräckligt med oöppnade kort för datorn att spela
             if (unopenedCards.length >= 2) {
+                if (hardMode) {
+                    let cardToClick;
+                    
+                    // Om det finns minne, försök matcha med det
+                    if (memory.length > 0) {
+                        cardToClick = findMatchingCard(unopenedCards);
+                    }
+
+                    // Om inget matchande kort hittades, välj två slumpmässiga kort
+                    if (!cardToClick) {
+                        const randomCardIndices = getRandomCardIndices(unopenedCards.length);
+                        cardToClick = randomCardIndices.map(index => unopenedCards[index]);
+                    }
+
+                    // Klicka på de valda korten
+                    cardToClick.forEach(card => card.click());
+
+                    // Uppdatera minnet med de öppnade korten
+                    memory = cardToClick.map(card => card.dataset.name);
+
+                    // Kör igen playComputerMoves om det fortfarande är datorns tur
+                    if (currentPlayer === 'player2') {
+                        playComputerMoves();
+                    }
+                    } else {
                 const randomCardIndices = getRandomCardIndices(unopenedCards.length);
                 randomCardIndices.forEach(index => unopenedCards[index].click());
 
@@ -432,6 +471,7 @@ function playComputerMoves() {
                     // Om ja, kör playComputerMoves igen
                     playComputerMoves();
                 }
+            }
             } else {
                 // Om det inte finns tillräckligt med oöppnade kort, avsluta datorns tur
                 toggleActivePlayer();
@@ -444,6 +484,18 @@ function playComputerMoves() {
         //     console.log('Game clicked!');
         // };
     }, 800); // Justera fördröjningen vid behov
+}
+
+// Hjälpfunktion för att hitta matchande kort i unopenedCards baserat på minnet
+function findMatchingCard(unopenedCards) {
+    for (let i = 0; i < memory.length; i++) {
+        const matchingCard = Array.from(unopenedCards).find(card => card.dataset.name === memory[i]);
+        if (matchingCard) {
+            // Returnera det första matchande kortet som hittats
+            return [matchingCard];
+        }
+    }
+    return null;
 }
 
 // Funktion för att generera slumpmässiga index för kort
