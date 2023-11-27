@@ -29,10 +29,73 @@ let emojisArray; // Flytta deklarationen hit
 let isComputerPlayer = false;
 let hardMode = false;
 
+//Ladda ljud
+const clickSound = new Audio('./src/audio/game-click.wav');
+const mainMenuButtonSound1 = new Audio('./src/audio/main_menu_button_1.mp3');
+const mainMenuButtonSound2 = new Audio('./src/audio/main_menu_button_2.mp3');
+const mainMenuButtonSound3 = new Audio('./src/audio/back_main_button.mp3');
+const mainMenuMusic = new Audio('./src/audio/main_menu_music.mp3');
+
+const gameMusic = new Audio('./src/audio/gameMusic.mp3');
+const flipCard = new Audio('./src/audio/flipcard.mp3');
+const flipCardBack = new Audio('./src/audio/flipcard_back.mp3');
+
+// Main Menu Music
+mainMenuMusic.volume = 0.8;
+// Loop
+const loopStartTime = 11; //Loppen startas om här
+mainMenuMusic.addEventListener('ended', function() {
+    // Sätt currentTime till önskad position för att skapa en loop-liknande effekt
+    mainMenuMusic.currentTime = loopStartTime;
+    // Starta ljudet igen
+    mainMenuMusic.play();
+});
+
+// Game Music
+gameMusic.loop = true;
+gameMusic.volume = 0.8;
+
+
+//Volume settings
+//Flip
+flipCard.volume = 0.4;
+flipCardBack.volume = 0.6;
+
+//Click
+clickSound.volume = 0.7;
+//Menu buttons
+
+// Starta ljudet
+mainMenuMusic.play();
+
+//Back to Main button
+function backToMain() {
+    document.querySelector('.main-menu').style.display = 'flex';
+    document.querySelector('.pre-menu').style.display = 'none';
+    document.querySelector('.pvm-menu').style.display = 'none';
+
+
+    mainMenuButtonSound3.play();
+}
+
 //Ladda PVP meny
 function loadPVPMenu() {
     document.querySelector('.main-menu').style.display = 'none';
     document.querySelector('.pre-menu').style.display = 'flex';
+    mainMenuButtonSound1.play();
+}
+
+//PVP Menu Start Game knapp
+function startGamePVP() {
+
+    //Spela upp ljud
+    mainMenuButtonSound2.play();
+
+     //Pausa menu-, starta game music
+    mainMenuMusic.pause();
+    gameMusic.play();
+
+    startGame();
 }
 
 //Ladda PVM meny
@@ -43,27 +106,48 @@ function loadPVMMenu() {
     // Set the name "Computer" for player2
     document.getElementById('player2-name').value = 'Computer';
 
+    //Spela upp ljud
+    mainMenuButtonSound1.play();
+
     isComputerPlayer = true;   
 }
 
-
-
+//PVM Menu 'Start Game' knapp EASY
 function startGamePVM() {
+
+    //Spela Ljud
+    mainMenuButtonSound2.play();
+
     //Namnet från PVM formuläret överförst till player1-name. 
     const playerNamePVM = document.getElementById('player1-name-pvm').value;
     
     document.getElementById('player1-name').value = playerNamePVM;
+
+    //Pausa menu-, starta game music
+    mainMenuMusic.pause();
+    gameMusic.play();
 
     startGame();
 }
 
+//PVM Menu 'Start Game' knapp HARD
 function startGamePVMHard() {
     //Namnet från PVM formuläret överförst till player1-name. 
     const playerNamePVM = document.getElementById('player1-name-pvm').value;
+
+    
     
     document.getElementById('player1-name').value = playerNamePVM;
 
     hardMode = true;
+    
+    //Play Klick button sound
+    mainMenuButtonSound2.play();
+
+    //Pausa menu-, starta game music
+    mainMenuMusic.pause();
+    gameMusic.play();
+    
     startGame();
 }
 
@@ -241,6 +325,10 @@ function handleMatchedPair() {
                 openCards.forEach(card => {
                     card.classList.remove('boxOpen');
                 });
+
+                //Spela upp ljud - flipcard back
+                flipCardBack.play();
+
                 // Toggle the active player after flipping back the cards
                 toggleActivePlayer();
             }, 500);
@@ -349,6 +437,12 @@ function startGame() {
                 // if (isComputerPlayer && blockOnClick) {
                 //     return; // Blockera klick om det är datorns tur
                 // }
+                //spela klick-ljud
+                clickSound.play();
+
+                //spela öppna kort ljud
+                flipCard.play();
+
                 //lägg till class 'boxOpen' på div-elementet
                 this.classList.add('boxOpen');
                 
@@ -462,7 +556,7 @@ function playComputerMoves() {
                     if (currentPlayer === 'player2') {
                         playComputerMoves();
                     }
-                    } else {
+                } else {
                 const randomCardIndices = getRandomCardIndices(unopenedCards.length);
                 randomCardIndices.forEach(index => unopenedCards[index].click());
 
