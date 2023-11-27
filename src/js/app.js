@@ -335,6 +335,7 @@ function startGame() {
                 console.log('Card clicked!');
                 //lägg till class 'boxOpen' på div-elementet
                 this.classList.add('boxOpen');
+                
                 //Anropa funktionen direkt utan timeout
                 handleMatchedPair();
             }
