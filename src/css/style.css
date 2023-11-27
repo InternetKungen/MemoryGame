@@ -25,6 +25,7 @@ h2 {
     background: purple;
     display: flex;
     flex-direction: row;
+    animation: fadeInMenu 2s ease 1;
 }
 
 .container {
@@ -191,7 +192,18 @@ h3 {
     flex-direction: column;
     height: 460px;
     width: 600px;
+    animation: fadeInMenu 2s ease 1;
 }
+
+@keyframes fadeInMenu {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
 .pvm-menu button,
 .main-menu button,
 .pre-menu button {
