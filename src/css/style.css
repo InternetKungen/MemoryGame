@@ -67,6 +67,7 @@ h2 {
     transform-style: preserve-3d;
     perspective: 500px;
     justify-content: center;
+    animation: sizeAnimationOneIntro 0.5s ease-in 1;
 }
 
 .item {
@@ -328,3 +329,56 @@ input {
         box-shadow: 0 0 14px #ff9100;
     }
 }
+
+.shakeAnimation {
+    /* animation-delay: 0.5s; */
+    animation: shake 0.1s ease-in;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0px);
+    }
+    20% {
+        transform: translateX(10px);
+    }
+    40% {
+        transform: translateX(-10px);
+    }
+    60% {
+        transform: translateX(5px);
+    }
+    80% {
+        transform: translateX(-5px);
+    }
+}
+
+/* .sizeChangeIntro {
+    animation: sizeChangeIntroAnimation_items 0.4s ease-in 1;
+    transition: opacity 0.3s;
+    opacity: 1;
+} */
+
+/* .opacityZero {
+    opacity: 0;
+} */
+
+@keyframes sizeAnimationOneIntro {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* @keyframes sizeChangeIntroAnimation_items {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+} */

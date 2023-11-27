@@ -207,9 +207,27 @@ function handleMatchedPair() {
 
             }
         } else {
-            // Annars - Flippa tillbaka korten efter en kort fördröjning
+
+            //Skaka kort vid omaka par
             setTimeout(() => {
-                openCards.forEach(card => card.classList.remove('boxOpen'));
+            setTimeout(() => {
+                openCards.forEach(card => {
+                    card.classList.add('shakeAnimation');
+                });
+            }, 100);
+        }, 200);
+
+            //Ta bort skakningsklassen efter en kort fördröjning
+            setTimeout(() => {
+                openCards.forEach(card => card.classList.remove('shakeAnimation'));
+            }, 500);
+
+
+            //Flippa tillbaka kortet
+            setTimeout(() => {
+                openCards.forEach(card => {
+                    card.classList.remove('boxOpen');
+                });
                 // Toggle the active player after flipping back the cards
                 toggleActivePlayer();
             }, 500);
@@ -328,14 +346,74 @@ function startGame() {
         if (isComputerPlayer && currentPlayer !== 'player1') {
             playComputerMoves();
         }
+
+        // const gameContainer = document.querySelector('.game');
+        // emojisArray = Object.keys(emojis);
+    
+        // // Duplicera varje emoji för att skapa par
+        // const emojiPairs = emojisArray.reduce((acc, emoji) => {
+        //     acc.push(emoji, emoji);
+        //     return acc;
+        // }, []);
+    
+        // // Shuffle emoji-par
+        // let shuffleEmojis = emojiPairs.sort(() => (Math.random() > 0.5) ? 1 : -1);
+    
+        // // Lägga ut korten efter shuffleEmojus-array
+        // for (let i = 0; i < shuffleEmojis.length; i++) {
+        //     let box = document.createElement('div');
+        //     box.className = 'item';
+        //     box.classList.add = 'opacityZero';
+        //     // box.style.opacity = 0; // Sätt opacity till 0 för att göra kortet osynligt
+        //     const emojiName = shuffleEmojis[i];
+        //     box.dataset.name = emojiName;
+        //     box.innerHTML = emojis[emojiName].image;
+    
+        //     // On-click på box/div-elementet...
+        //     box.onclick = function () {
+        //         console.log('Card clicked!');
+        //         this.classList.add('boxOpen');
+        //         handleMatchedPair();
+        //     }
+    
+        //     gameContainer.appendChild(box);
+    
+        //     // Använd setTimeout för att gradvis göra kortet synligt
+        //     setTimeout(() => {
+        //         // box.style.opacity = 0.2;
+        //         // box.style.animation = 'sizeAnimationOneIntro 0.2s ease-in';
+        //         box.classList.remove = 'opacityZero';
+        //         box.classList.add('sizeChangeIntro');
+        //     }, i * 100); // Justera fördröjningen för varje kort
+
+        //     setTimeout(() => {
+        //     setTimeout(() => {
+        //         // box.style.opacity = 1;
+        //         // box.style.animation = 'sizeAnimationOneIntro 0.2s ease-in';
+        //         box.classList.remove('sizeChangeIntro');
+        //     }, i * 100);
+        // }, i * 30);
+        // }
+    
+        // // Check if the second player is a computer and trigger computer moves
+        // if (isComputerPlayer && currentPlayer !== 'player1') {
+        //     playComputerMoves();
+        // }
+
     } else {
         alert('Please enter names for both players to start the game.');
     }
 }
 
+
 //Datorn spelar
 function playComputerMoves() {
     console.log('Computer is playing...');
+
+    // // Blockera onclick-händelsen för hela spelplanen (.game)
+    // const gameContainer = document.querySelector('.game');
+    // gameContainer.onclick = null;
+
     // Fördröjningen innan datorn spelar kan anpassas efter behov
     setTimeout(() => {
         // Kontrollera om det fortfarande är datorns tur
@@ -358,6 +436,12 @@ function playComputerMoves() {
                 toggleActivePlayer();
             }
         }
+
+        // // Återställ onclick-händelsen för hela spelplanen (.game)
+        // gameContainer.onclick = function (event) {
+        //     // Lägg till logiken för vad som ska hända när spelaren klickar här
+        //     console.log('Game clicked!');
+        // };
     }, 800); // Justera fördröjningen vid behov
 }
 
