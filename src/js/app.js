@@ -320,8 +320,8 @@ function handleMatchedPair() {
                     let winnerNotice = document.querySelector(".winner-notice");
 
                     let winnerIs = `
-                        <h3>Winner!</h3>
                         <h3>${winnerName}</h3>
+                        <h3>Wins!</h3>
                     `;
 
                     winnerNotice.innerHTML = winnerIs;
@@ -439,12 +439,10 @@ function startGame() {
             <h3>Score</h3>
             <div class="player player1">
                 <div class="player-name">${player1Name}</div>
-                <p>:</p>
                 <div class="player-score">0</div>
             </div>
             <div class="player player2">
                 <div class="player-name">${player2Name}</div>
-                <p>:</p>
                 <div class="player-score">0</div>
             </div>
         `;

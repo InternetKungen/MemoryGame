@@ -61,8 +61,12 @@
             <input type="text" id="player2-name" name="player2-name" required />
           </form>
 
-          <button onclick="startGamePVP()">Start Game</button>
-          <button onclick="backToMain();">Back To Main</button>
+          <button class="main-menu__option" onclick="startGamePVP()">
+            Start Game
+          </button>
+          <button class="main-menu__option" onclick="backToMain();">
+            Back To Main
+          </button>
         </div>
 
         <!-- PVM MENU-->
@@ -77,9 +81,15 @@
               required
             />
           </form>
-          <button onclick="startGamePVM()">Easy</button>
-          <button onclick="startGamePVMHard()">Hard</button>
-          <button onclick="backToMain();">Back To Main</button>
+          <button class="main-menu__option" onclick="startGamePVM()">
+            Easy
+          </button>
+          <button class="main-menu__option" onclick="startGamePVMHard()">
+            Hard
+          </button>
+          <button class="main-menu__option" onclick="backToMain();">
+            Back To Main
+          </button>
         </div>
 
         <!-- SPELET -->
@@ -96,12 +106,14 @@
               <h4>History</h4>
               <div class="line-thing"></div>
             </div>
-            <button class="reset" onclick="window.location.reload();">
-              Quit to Main
-            </button>
-            <button class="play-again" onclick="restartGame()">
-              Play Again
-            </button>
+            <div class="score-buttons-container">
+              <button class="reset" onclick="window.location.reload();">
+                Quit to Main
+              </button>
+              <button class="play-again" onclick="restartGame()">
+                Play Again
+              </button>
+            </div>
           </div>
         </div>
 
