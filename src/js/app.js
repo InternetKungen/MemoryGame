@@ -503,54 +503,6 @@ function startGame() {
         if (isComputerPlayer && currentPlayer !== 'player1') {
             playComputerMoves();
         }
-
-        // const gameContainer = document.querySelector('.game');
-        // emojisArray = Object.keys(emojis);
-    
-        // // Duplicera varje emoji för att skapa par
-        // const emojiPairs = emojisArray.reduce((acc, emoji) => {
-        //     acc.push(emoji, emoji);
-        //     return acc;
-        // }, []);
-    
-        // // Shuffle emoji-par
-        // let shuffleEmojis = emojiPairs.sort(() => (Math.random() > 0.5) ? 1 : -1);
-    
-        // // Lägga ut korten efter shuffleEmojus-array
-        // for (let i = 0; i < shuffleEmojis.length; i++) {
-        //     let box = document.createElement('div');
-        //     box.className = 'item';
-        //     box.classList.add = 'opacityZero';
-        //     // box.style.opacity = 0; // Sätt opacity till 0 för att göra kortet osynligt
-        //     const emojiName = shuffleEmojis[i];
-        //     box.dataset.name = emojiName;
-        //     box.innerHTML = emojis[emojiName].image;
-    
-        //     // On-click på box/div-elementet...
-        //     box.onclick = function () {
-        //         console.log('Card clicked!');
-        //         this.classList.add('boxOpen');
-        //         handleMatchedPair();
-        //     }
-    
-        //     gameContainer.appendChild(box);
-    
-        //     // Använd setTimeout för att gradvis göra kortet synligt
-        //     setTimeout(() => {
-        //         // box.style.opacity = 0.2;
-        //         // box.style.animation = 'sizeAnimationOneIntro 0.2s ease-in';
-        //         box.classList.remove = 'opacityZero';
-        //         box.classList.add('sizeChangeIntro');
-        //     }, i * 100); // Justera fördröjningen för varje kort
-
-        //     setTimeout(() => {
-        //     setTimeout(() => {
-        //         // box.style.opacity = 1;
-        //         // box.style.animation = 'sizeAnimationOneIntro 0.2s ease-in';
-        //         box.classList.remove('sizeChangeIntro');
-        //     }, i * 100);
-        // }, i * 30);
-        // }
     
         // // Check if the second player is a computer and trigger computer moves
         // if (isComputerPlayer && currentPlayer !== 'player1') {

@@ -118,10 +118,10 @@ header h2 {
 .play-again,
 .reset {
     padding: 15px 20px;
-    color: rgb(40, 56, 75);
-    background: linear-gradient(#fef6cd, #3be9f1);
-    border: none;
-    border-radius: 20px;
+    color: #fef6cd;
+    background: linear-gradient(to bottom, #f26c67,#cc1e70, #99196c);
+    border: 1px solid #c3166a;
+    border-radius: 8px;
     font-size: 1em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -134,8 +134,8 @@ header h2 {
 .play-again:focus,
 .main-menu__option:focus,
 .reset:focus {
-    color: #fef6cd;
-    background: #3be9f1;
+    color: #020121;
+    background: linear-gradient(#fef6cd, #3be9f1);
 }
 
 .game {
@@ -293,10 +293,10 @@ h3 {
 .main-menu button,
 .pre-menu button {
     padding: 15px 20px;
-    color: rgb(40, 56, 75);
-    background: linear-gradient(to bottom, #fef6cd, #3be9f1);
+    color: #fef6cd;
+    background: linear-gradient(to bottom, #f26c67,#cc1e70, #99196c);
     border: none;
-    border-radius: 26px;
+    border-radius: 8px;
     font-size: 1.3em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
