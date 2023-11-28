@@ -29,6 +29,9 @@ let emojisArray; // Flytta deklarationen hit
 let isComputerPlayer = false;
 let hardMode = false;
 
+//Game Loaded switch
+let gameLoaded = false;
+
 //Ladda ljud
 const clickSound = new Audio('./src/audio/game-click.wav');
 const mainMenuButtonSound1 = new Audio('./src/audio/main_menu_button_1.mp3');
@@ -39,6 +42,9 @@ const mainMenuMusic = new Audio('./src/audio/main_menu_music.mp3');
 const gameMusic = new Audio('./src/audio/gameMusic.mp3');
 const flipCard = new Audio('./src/audio/flipcard.mp3');
 const flipCardBack = new Audio('./src/audio/flipcard_back.mp3');
+
+const successSound = new Audio('./src/audio/success.mp3');
+const failSound = new Audio('./src/audio/fail.mp3');
 
 // Main Menu Music
 mainMenuMusic.volume = 0.8;
@@ -74,7 +80,6 @@ function backToMain() {
     document.querySelector('.pre-menu').style.display = 'none';
     document.querySelector('.pvm-menu').style.display = 'none';
 
-
     mainMenuButtonSound3.play();
 }
 
@@ -95,6 +100,8 @@ function startGamePVP() {
     mainMenuMusic.pause();
     gameMusic.play();
 
+    gameLoaded = true;
+
     startGame();
 }
 
@@ -103,17 +110,17 @@ function loadPVMMenu() {
     document.querySelector('.main-menu').style.display = 'none';
     document.querySelector('.pvm-menu').style.display = 'flex';
 
-    // Set the name "Computer" for player2
-    document.getElementById('player2-name').value = 'Computer';
-
     //Spela upp ljud
-    mainMenuButtonSound1.play();
-
-    isComputerPlayer = true;   
+    mainMenuButtonSound1.play(); 
 }
 
 //PVM Menu 'Start Game' knapp EASY
 function startGamePVM() {
+    //Aktivera Dator-spelare
+    isComputerPlayer = true; 
+
+    // Set the name "Computer" for player2
+    document.getElementById('player2-name').value = 'Computer';
 
     //Spela Ljud
     mainMenuButtonSound2.play();
@@ -127,11 +134,19 @@ function startGamePVM() {
     mainMenuMusic.pause();
     gameMusic.play();
 
+    gameLoaded = true;
+
     startGame();
 }
 
 //PVM Menu 'Start Game' knapp HARD
 function startGamePVMHard() {
+    //Aktivera Dator-spelare
+    isComputerPlayer = true; 
+
+    // Set the name "Computer" for player2
+    document.getElementById('player2-name').value = 'Computer';
+
     //Namnet från PVM formuläret överförst till player1-name. 
     const playerNamePVM = document.getElementById('player1-name-pvm').value;
 
@@ -148,9 +163,37 @@ function startGamePVMHard() {
     mainMenuMusic.pause();
     gameMusic.play();
     
+    gameLoaded = true;
+
     startGame();
 }
 
+
+//Volym-ikonen - header - toggle
+const volumeButton = document.querySelector('.volumeButton');
+const volumeIcon = document.querySelector('.volumeIcon');
+let isSoundOn = true;
+
+function toggleSound() {
+  if (isSoundOn) {
+    // Stäng av ljudet
+    mainMenuMusic.pause();
+    gameMusic.pause();
+    isSoundOn = false;
+    volumeIcon.src = './src/img/volume-off.png';
+  } else {
+    // Slå på ljudet
+    if (gameLoaded) {
+        gameMusic.play();
+    } else 
+    {
+    mainMenuMusic.play();
+    };
+
+    isSoundOn = true;
+    volumeIcon.src = './src/img/volume-on.png';
+  }
+}
 
 // Aktiv spelare - toggle
 function toggleActivePlayer() {
@@ -248,6 +291,9 @@ function handleMatchedPair() {
             // Lägg till classen 'boxMatch' på matchade par
             openCards.forEach(card => card.classList.add('boxMatch'));
 
+            //Spela ljud - success
+            successSound.play();
+
             // Lägg till i matchhistoriken
             addToMatchHistory(currentPlayer, emoji1);
 
@@ -310,6 +356,7 @@ function handleMatchedPair() {
             setTimeout(() => {
                 openCards.forEach(card => {
                     card.classList.add('shakeAnimation');
+                    failSound.play();
                 });
             }, 100);
         }, 200);

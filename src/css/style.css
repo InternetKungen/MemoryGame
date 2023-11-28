@@ -21,6 +21,46 @@ h2 {
     letter-spacing: 0.5em;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    width: 600px;
+}
+
+header h2 {
+    font-size: 3em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+}
+
+
+.volume-container {
+    display: flex;
+    /* align-items: flex-end; */
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.volumeButton {
+    background: transparent;
+    border: none;
+    /* position: relative; */
+    /* bottom: -45px; */
+    /* right: 10px; */
+    /* z-index: 3; */
+}
+
+.volumeIcon {
+    height: 30px;
+    /* position: relative; */
+    /* left: 120px; */
+    /* right: 0px; */
+    /* bottom: -3px; */
+}
+
 .main-container {
     background: purple;
     display: flex;
