@@ -121,7 +121,7 @@ header h2 {
     color: rgb(40, 56, 75);
     background: linear-gradient(#fef6cd, #3be9f1);
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
     font-size: 1em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -294,9 +294,9 @@ h3 {
 .pre-menu button {
     padding: 15px 20px;
     color: rgb(40, 56, 75);
-    background: linear-gradient(#fef6cd, #3be9f1);
+    background: linear-gradient(to bottom, #fef6cd, #3be9f1);
     border: none;
-    border-radius: 8px;
+    border-radius: 26px;
     font-size: 1.3em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -331,7 +331,7 @@ input {
     padding: 5px;
     margin-bottom: 15px;
     border-radius: 7px;
-    border: 2px solid #ffc982;
+    border: 2px solid #f26c67;
 }
 
 .player {
