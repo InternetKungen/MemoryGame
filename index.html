@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript - Memory Game</title>
     <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="stylesheet" href="./src/css/starfield.css" />
     <script src="./src/js/app.js" defer></script>
+    <script src="./src/js/starfield.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,94 +16,101 @@
     />
   </head>
   <body>
-    <header>
-      <h2>Memory Game</h2>
-      <div class="volume-container">
-        <button class="volumeButton" onclick="toggleSound()">
-          <img
-            class="volumeIcon"
-            src="./src/img/volume-on.png"
-            alt="Volume On"
-          />
-        </button>
-      </div>
-    </header>
-    <main>
-      <!-- MAIN MENU -->
-      <div class="main-menu">
-        <h3>Main Menu</h3>
-        <button class="main-menu__option" onclick="loadPVPMenu()">
-          Player vs Player
-        </button>
-        <button class="main-menu__option" onclick="loadPVMMenu()">
-          Player vs Machine
-        </button>
-      </div>
-
-      <!-- PVP MENU -->
-      <div id="pre-menu" class="pre-menu">
-        <h3>Player Registration</h3>
-        <form id="player-form-1">
-          <label for="player1-name">Player 1 Name:</label>
-          <input type="text" id="player1-name" name="player1-name" required />
-        </form>
-
-        <form id="player-form-2">
-          <label for="player2-name">Player 2 Name:</label>
-          <input type="text" id="player2-name" name="player2-name" required />
-        </form>
-
-        <button onclick="startGamePVP()">Start Game</button>
-        <button onclick="backToMain();">Back To Main</button>
-      </div>
-
-      <!-- PVM MENU-->
-      <div class="pvm-menu" id="pvm-menu">
-        <h3>Player Registration</h3>
-        <form id="player-form-pvm">
-          <label for="player1-name-pvm">Player's Name:</label>
-          <input
-            type="text"
-            id="player1-name-pvm"
-            name="player1-name-pvm"
-            required
-          />
-        </form>
-        <button onclick="startGamePVM()">Easy</button>
-        <button onclick="startGamePVMHard()">Hard</button>
-        <button onclick="backToMain();">Back To Main</button>
-      </div>
-
-      <!-- SPELET -->
-      <div class="main-container">
-        <!-- Spelplanen -->
-        <div class="container">
-          <div class="game"></div>
-        </div>
-
-        <!-- Poängtavlan -->
-        <div class="score-board-container">
-          <div class="score-board"></div>
-          <div class="history">
-            <h4>History</h4>
-            <div class="line-thing"></div>
-          </div>
-          <button class="reset" onclick="window.location.reload();">
-            Quit to Main
+    <div class="fullScreen" id="fullScreen">
+      <canvas id="canvas2d"></canvas>
+    </div>
+    <div class="ontop">
+      <header>
+        <h2>Memory Game</h2>
+        <div class="volume-container">
+          <button class="volumeButton" onclick="toggleSound()">
+            <img
+              class="volumeIcon"
+              src="./src/img/volume-on.png"
+              alt="Volume On"
+            />
           </button>
-          <button class="play-again" onclick="restartGame()">Play Again</button>
         </div>
-      </div>
+      </header>
+      <main>
+        <!-- MAIN MENU -->
+        <div class="main-menu">
+          <h3>Main Menu</h3>
+          <button class="main-menu__option" onclick="loadPVPMenu()">
+            Player vs Player
+          </button>
+          <button class="main-menu__option" onclick="loadPVMMenu()">
+            Player vs Machine
+          </button>
+        </div>
 
-      <!--WINNER NOTICE TEMPLATE-->
-      <div class="winner-notice">
-        <h3>Winner!</h3>
-      </div>
+        <!-- PVP MENU -->
+        <div id="pre-menu" class="pre-menu">
+          <h3>Player Registration</h3>
+          <form id="player-form-1">
+            <label for="player1-name">Player 1 Name:</label>
+            <input type="text" id="player1-name" name="player1-name" required />
+          </form>
 
-      <!--DRAW NOTICE-->
-      <div class="draw-notice">
-        <h3>Draw!</h3>
-      </div>
-    </main>
+          <form id="player-form-2">
+            <label for="player2-name">Player 2 Name:</label>
+            <input type="text" id="player2-name" name="player2-name" required />
+          </form>
+
+          <button onclick="startGamePVP()">Start Game</button>
+          <button onclick="backToMain();">Back To Main</button>
+        </div>
+
+        <!-- PVM MENU-->
+        <div class="pvm-menu" id="pvm-menu">
+          <h3>Player Registration</h3>
+          <form id="player-form-pvm">
+            <label for="player1-name-pvm">Player's Name:</label>
+            <input
+              type="text"
+              id="player1-name-pvm"
+              name="player1-name-pvm"
+              required
+            />
+          </form>
+          <button onclick="startGamePVM()">Easy</button>
+          <button onclick="startGamePVMHard()">Hard</button>
+          <button onclick="backToMain();">Back To Main</button>
+        </div>
+
+        <!-- SPELET -->
+        <div class="main-container">
+          <!-- Spelplanen -->
+          <div class="container">
+            <div class="game"></div>
+          </div>
+
+          <!-- Poängtavlan -->
+          <div class="score-board-container">
+            <div class="score-board"></div>
+            <div class="history">
+              <h4>History</h4>
+              <div class="line-thing"></div>
+            </div>
+            <button class="reset" onclick="window.location.reload();">
+              Quit to Main
+            </button>
+            <button class="play-again" onclick="restartGame()">
+              Play Again
+            </button>
+          </div>
+        </div>
+
+        <!--WINNER NOTICE TEMPLATE-->
+        <div class="winner-notice">
+          <h3>Winner!</h3>
+        </div>
+
+        <!--DRAW NOTICE-->
+        <div class="draw-notice">
+          <h3>Draw!</h3>
+        </div>
+      </main>
+    </div>
   </body>
 </html>

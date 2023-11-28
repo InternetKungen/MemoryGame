@@ -5,6 +5,10 @@
     font-family: 'VT323', monospace;
 }
 
+.ontop {
+    position: absolute;
+}
+
 body {
     display: flex;
     justify-content: center;
