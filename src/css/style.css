@@ -9,6 +9,25 @@
     position: absolute;
 }
 
+.main-logo {
+    height: 150px;
+    width: 400px;
+    position: absolute;
+    left: calc(50% - 200px);
+    top: -13vh;
+    z-index: 2;
+}
+.main-logo-hidden-box {
+    position: absolute;
+    top: -12vh;
+    left: calc(50% - 150px);
+    display: block;
+    height: 90px;
+    width: 300px;
+    box-shadow: 0 0 40px hotpink;
+    z-index: 1;
+}
+
 body {
     display: flex;
     justify-content: center;
