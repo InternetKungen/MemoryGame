@@ -61,7 +61,6 @@ mainMenuMusic.addEventListener('ended', function() {
 gameMusic.loop = true;
 gameMusic.volume = 0.8;
 
-
 //Volume settings
 //Flip
 flipCard.volume = 0.4;
@@ -69,7 +68,11 @@ flipCardBack.volume = 0.6;
 
 //Click
 clickSound.volume = 0.7;
+
 //Menu buttons
+mainMenuButtonSound1.volume = 0.9;
+mainMenuButtonSound2.volume = 0.9;
+mainMenuButtonSound3.volume = 0.9;
 
 // Starta ljudet
 mainMenuMusic.play();
