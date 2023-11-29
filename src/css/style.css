@@ -145,15 +145,42 @@ header h2 {
     flex-wrap: wrap;
     gap: 10px;
     transform-style: preserve-3d;
-    perspective: 500px;
+    perspective: 1000px;
     justify-content: center;
     animation: sizeAnimationOneIntro 0.5s ease-in 1;
 }
 
-.item {
-    position: relative;
+.item-outer-container {
     width: 100px;
     height: 100px;
+    background: transparent;
+    perspective: 1000px;
+    border-radius: 8px;
+}
+
+.item-inner-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.item,
+.item-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /*Safari */
+    backface-visibility: hidden;
+    border-radius: 8px;
+}
+
+.item {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,11 +189,23 @@ header h2 {
     transform: rotateY(180deg);
     transition: transform 0.5s, scale 0.3s;
     box-shadow: 0 0 0 white;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     cursor: pointer;
 }
 
-.item:hover {
+.item-back {
+    /* content: '';*/
+    /*position: absolute; */
+    /* inset: 0; */
+    /* opacity: 0.6; */
+    background: brown;
+    /* transition: transform 0.5s; */
+    /* transform: rotateY(0deg); */
+    /* backface-visibility: hidden; */
+    /* border-radius: 10px; */
+}
+
+.item-inner-container:hover {
     scale: 1.01;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.363);
     /* border: 5px double #ff9100; */
@@ -174,30 +213,27 @@ header h2 {
 }
 
 .boxOpen {
-    transform: rotateY(0deg);
-    transition: transform 0.5s;
-}
-
-.item:after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* opacity: 0.6; */
-    background: brown;
-    transition: transform 0.5s;
-    transform: rotateY(0deg);
-    backface-visibility: hidden;
-    border-radius: 10px;
-}
-
-.boxOpen:after,
-.boxMatch:after {
     transform: rotateY(180deg);
     transition: transform 0.5s;
 }
 
+
+/* .boxOpen:after,
+.boxMatch:after {
+    transform: rotateY(180deg);
+    transition: transform 0.5s;
+} */
+
 .boxMatch {
     /* animation: backgroundAnimation 0.01s ease-in-out 2; */
+    /* transform: rotateY(-720deg);
+    transition: transform 0.5s, box-shadow 1.5s, opacity 3s;
+    box-shadow: 0 0 20px rgb(255, 196, 129);
+    opacity: 0; */
+    cursor: default;
+}
+
+.boxMatchAnimation {
     transform: rotateY(-720deg);
     transition: transform 0.5s, box-shadow 1.5s, opacity 3s;
     box-shadow: 0 0 20px rgb(255, 196, 129);
@@ -385,7 +421,7 @@ input {
     }
 }
 
-@keyframes backgroundAnimation {
+/* @keyframes backgroundAnimation {
     0%, 100% {
         background: #00f7ff;
     }
@@ -398,7 +434,7 @@ input {
     75% {
         background: #33ff00;
     }
-}
+} */
 
 .draw-notice,
 .winner-notice {

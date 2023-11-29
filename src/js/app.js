@@ -285,11 +285,19 @@ function handleMatchedPair() {
             // Uppdatera poängen för den aktiva spelaren
             updateScore(currentPlayer, emoji1);
 
-            // Ta bort classen 'boxOpen' från matchade korten
-            openCards.forEach(card => card.classList.remove('boxOpen'));
-
             // Lägg till classen 'boxMatch' på matchade par
             openCards.forEach(card => card.classList.add('boxMatch'));
+
+            openCards.forEach(card => {
+                card.closest('.item-outer-container').classList.add('boxMatchAnimation');
+            })
+            
+            // Ta bort classen 'boxOpen' från matchade korten
+            // openCards.forEach(card => card.classList.remove('boxOpen'));
+            openCards.forEach((card, index) => {
+                    card.classList.remove('boxOpen');
+                    card.querySelector('.item').style.backfaceVisibility = 'visible';
+            });
 
             //Spela ljud - success
             successSound.play();
@@ -351,21 +359,20 @@ function handleMatchedPair() {
             }
         } else {
 
-            //Skaka kort vid omaka par
+           //Skaka kort vid omaka par
             setTimeout(() => {
-            setTimeout(() => {
-                openCards.forEach(card => {
-                    card.classList.add('shakeAnimation');
-                    failSound.play();
-                });
-            }, 100);
-        }, 200);
+                setTimeout(() => {
+                    openCards.forEach(card => {
+                        card.closest('.item-outer-container').classList.add('shakeAnimation');
+                        failSound.play();
+                    });
+                }, 100);
+            }, 200);
 
             //Ta bort skakningsklassen efter en kort fördröjning
             setTimeout(() => {
-                openCards.forEach(card => card.classList.remove('shakeAnimation'));
+                openCards.forEach(card => card.closest('.item-outer-container').classList.remove('shakeAnimation'));
             }, 500);
-
 
             //Flippa tillbaka kortet
             setTimeout(() => {
@@ -470,11 +477,27 @@ function startGame() {
             //skapa en variablel för att skapa div-element
             let box = document.createElement('div');
             //lägg till class "item" till div-elementet
-            box.className = 'item';
+            box.className = 'item-outer-container';
+
+            //skapa en variablel för att skapa div-element
+            let innerBox = document.createElement('div');
+            //lägg till class "item" till div-elementet
+            innerBox.className = 'item-inner-container';
+
+            let itemFront = document.createElement('div');
+            itemFront.className = 'item';
+
+            let itemBack = document.createElement('div');
+            itemBack.className = 'item-back';
+
+            box.appendChild(innerBox);
+            innerBox.appendChild(itemBack);
+            innerBox.appendChild(itemFront);
+
             //fyller div med emoji från shuffleEmojis array. --kan ändras till innerContent
             const emojiName = shuffleEmojis[i];
-            box.dataset.name = emojiName; // Sätt dataset för att lagra namnet istället för innerHTML
-            box.innerHTML = emojis[emojiName].image; // Använd image-attributet för att sätta in emoji
+            innerBox.dataset.name = emojiName; // Sätt dataset för att lagra namnet istället för innerHTML
+            itemFront.innerHTML = emojis[emojiName].image; // Använd image-attributet för att sätta in emoji
 
             //On-click på box/div-elementet...
             box.onclick = function () {
@@ -489,7 +512,7 @@ function startGame() {
                 flipCard.play();
 
                 //lägg till class 'boxOpen' på div-elementet
-                this.classList.add('boxOpen');
+                innerBox.classList.add('boxOpen');
                 
                 //Anropa funktionen direkt utan timeout
                 handleMatchedPair();
@@ -525,7 +548,7 @@ function playComputerMoves() {
         // Kontrollera om det fortfarande är datorns tur
         if (currentPlayer === 'player2') {
             // Gör datorns drag genom att klicka på två slumpmässiga kort
-            const unopenedCards = document.querySelectorAll('.item:not(.boxOpen):not(.boxMatch)');
+            const unopenedCards = document.querySelectorAll('.item-inner-container:not(.boxOpen):not(.boxMatch)');
             
             // Kontrollera om det finns tillräckligt med oöppnade kort för datorn att spela
             if (unopenedCards.length >= 2) {
