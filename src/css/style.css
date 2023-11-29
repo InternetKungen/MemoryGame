@@ -123,6 +123,7 @@ header h2 {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: 3px;
 }
 
 .play-again,
@@ -132,7 +133,7 @@ header h2 {
     background: linear-gradient(to bottom, #f26c67,#cc1e70, #99196c);
     border: 1px solid #c3166a;
     border-radius: 8px;
-    font-size: 1em;
+    font-size: 0.9em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
@@ -155,17 +156,20 @@ header h2 {
     flex-wrap: wrap;
     gap: 10px;
     transform-style: preserve-3d;
-    perspective: 500px;
+    perspective: 800px;
     justify-content: center;
     animation: sizeAnimationOneIntro 0.5s ease-in 1;
+    z-index: 2;
 }
 
 .item-outer-container {
     width: 100px;
     height: 100px;
     background: transparent;
-    perspective: 500px;
+    /* perspective: 200px; */
     border-radius: 8px;
+    transform-style: preserve-3d;
+    
 }
 
 .item-inner-container {
@@ -177,6 +181,19 @@ header h2 {
     transform-style: preserve-3d;
     border-radius: 8px;
     cursor: pointer;
+    /* overflow: hidden;  */
+    /* backface-visibility: hidden; */
+    
+}
+
+.item-container {
+    /* Ny container för att justera transform-egenskapen */
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    /* backface-visibility: hidden; */
+    /* overflow: hidden; */
 }
 
 .item,
@@ -184,13 +201,13 @@ header h2 {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /*Safari */
+    -webkit-backface-visibility: hidden; 
     backface-visibility: hidden;
     border-radius: 8px;
 }
 
 .item {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,20 +224,47 @@ header h2 {
     /* content: '';*/
     /*position: absolute; */
     /* inset: 0; */
-    /* opacity: 0.6; */
-    background: brown;
+    /* opacity: 0.8; */
+    background: linear-gradient(72deg, #F26C67, #FEF6CD),
+                url('../img/card_back.jpg');
+
+    /* background: #F26C67; */
     /* transition: transform 0.5s; */
     /* transform: rotateY(0deg); */
     /* backface-visibility: hidden; */
     /* border-radius: 10px; */
+    /* background-image: url('../img/card_back.jpg'); */
+    /* background-blend-mode: hue; */
+    background-blend-mode:multiply;
+    background-size: cover;
+    transition: transform 5s ease-in-out;
+    backface-visibility: hidden;
+    outline: 3px solid #f26c677c;
 }
 
 .item-inner-container:hover {
-    scale: 1.01;
+    /* scale: 1.01; */
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.363);
     /* border: 5px double #ff9100; */
-    animation: colorOutline 0.5s ease-in-out infinite;
+    animation: colorOutline 0.5s ease-out infinite;
+    /* overflow: hidden; */
 }
+/* .item-back:hover{ 
+    /* animation: scaleZoom 15s linear 1; */
+    /* transform: scale(7);
+    backface-visibility: hidden;
+    z-index: -1;
+}  */
+/*tung effekt*/
+
+/* @keyframes scaleZoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(10);
+    }
+} */
 
 .boxOpen {
     transform: rotateY(180deg);
@@ -290,6 +334,9 @@ h3 {
     flex-direction: column;
     align-items:baseline;
     border-radius: 12px;
+    /* border: 2px solid #F26C67; */
+    box-shadow: 0 0 1px #F26C67;
+    margin-bottom: 10px;
 }
 
 .history h4 {
@@ -302,8 +349,8 @@ h3 {
 .line-thing {
     display: block;
     height: 2px;
-    width: 80%;
-    background: linear-gradient(to right, #f26c67, #3be9f1, #f26c67);
+    width: 85%;
+    background: linear-gradient(to right, transparent, #f26c67, #3be9f1, #f26c67, transparent);
     margin-left: 10%;
 }
 
@@ -324,6 +371,11 @@ h3 {
     height: 460px;
     width: 600px;
     animation: fadeInMenu 2s ease 1;
+}
+
+.main-menu {
+    display: flex;
+    justify-content: space-between;
 }
 
 @keyframes fadeInMenu {
@@ -576,3 +628,20 @@ input {
         opacity: 1;
     }
 } */
+
+.main-menu__image-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+}
+
+.showImageMain__default {
+    /* width: 100;
+    height: 100px; */
+}
+.showImageMain__default img {
+    width: 200px;
+    height: 200px;
+}

@@ -44,12 +44,48 @@
         <!-- MAIN MENU -->
         <div class="main-menu">
           <h3>Main Menu</h3>
-          <button class="main-menu__option" onclick="loadPVPMenu()">
-            Player vs Player
-          </button>
-          <button class="main-menu__option" onclick="loadPVMMenu()">
-            Player vs Machine
-          </button>
+          <div class="main-menu__image-display">
+            <div class="showImageMain__default">
+              <img
+                src="./src/img/mainTitleImage.png"
+                alt="Main title image - a card with a universe"
+              />
+            </div>
+            <div class="showImageMain__PVP">
+              <img
+                class="showImageMain_img"
+                src="./src/img/man.png"
+                alt="Stick man"
+              />
+              <h2>VS</h2>
+              <img
+                class="showImageMain_img"
+                src="./src/img/woman.png"
+                alt="Stick woman"
+              />
+            </div>
+            <div class="showImageMain__PVM">
+              <img
+                class="showImageMain_img"
+                src="./src/img/man.png"
+                alt="Stick man"
+              />
+              <h2>VS</h2>
+              <img
+                class="showImageMain_img"
+                src="./src/img/computer.png"
+                alt="Stick woman"
+              />
+            </div>
+          </div>
+          <div class="main-menu__button-container">
+            <button class="main-menu__option" onclick="loadPVPMenu()">
+              Player vs Player
+            </button>
+            <button class="main-menu__option" onclick="loadPVMMenu()">
+              Player vs Machine
+            </button>
+          </div>
         </div>
 
         <!-- PVP MENU -->
@@ -65,12 +101,14 @@
             <input type="text" id="player2-name" name="player2-name" required />
           </form>
 
-          <button class="main-menu__option" onclick="startGamePVP()">
-            Start Game
-          </button>
-          <button class="main-menu__option" onclick="backToMain();">
-            Back To Main
-          </button>
+          <div class="pvp-menu__button-container">
+            <button class="main-menu__option" onclick="startGamePVP()">
+              Start Game
+            </button>
+            <button class="main-menu__option" onclick="backToMain();">
+              Back To Main
+            </button>
+          </div>
         </div>
 
         <!-- PVM MENU-->
@@ -85,15 +123,18 @@
               required
             />
           </form>
-          <button class="main-menu__option" onclick="startGamePVM()">
-            Easy
-          </button>
-          <button class="main-menu__option" onclick="startGamePVMHard()">
-            Hard
-          </button>
-          <button class="main-menu__option" onclick="backToMain();">
-            Back To Main
-          </button>
+
+          <div class="pvm-menu__button-container">
+            <button class="main-menu__option" onclick="startGamePVM()">
+              Easy
+            </button>
+            <button class="main-menu__option" onclick="startGamePVMHard()">
+              Hard
+            </button>
+            <button class="main-menu__option" onclick="backToMain();">
+              Back To Main
+            </button>
+          </div>
         </div>
 
         <!-- SPELET -->

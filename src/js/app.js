@@ -10,6 +10,20 @@ const emojis = {
     mushroom: { name: "mushroom", image: "🍄", points: 12 }
 };
 
+// Denna kod körs först när sidan laddas - gömmer saker
+document.addEventListener('DOMContentLoaded', function () {
+    // Om du vill visa registreringsmenyn när sidan laddas kan du kommentera bort den här raden
+    document.querySelector('.main-container').style.display = 'none';
+    document.querySelector('.pre-menu').style.display = 'none';
+    document.querySelector('.pvm-menu').style.display = 'none';
+    document.querySelector('.winner-notice').style.display = 'none';
+    document.querySelector('.draw-notice').style.display = 'none';
+    document.querySelector('.alert-notice').style.display = 'none';
+    document.querySelector('.showImageMain__PVP').style.display = 'none';
+    document.querySelector('.showImageMain__PVM').style.display = 'none';
+});
+
+
 // Skapa en tom array för att hålla historiken över matchade par
 let matchHistory = [];
 
@@ -517,6 +531,9 @@ function startGame() {
             //lägg till class "item" till div-elementet
             innerBox.className = 'item-inner-container';
 
+            let itemContainer = document.createElement('div');
+            itemContainer.className = 'item-container';
+
             let itemFront = document.createElement('div');
             itemFront.className = 'item';
 
@@ -524,8 +541,9 @@ function startGame() {
             itemBack.className = 'item-back';
 
             box.appendChild(innerBox);
-            innerBox.appendChild(itemBack);
-            innerBox.appendChild(itemFront);
+            innerBox.appendChild(itemContainer);
+            itemContainer.appendChild(itemBack);
+            itemContainer.appendChild(itemFront);
 
             //fyller div med emoji från shuffleEmojis array. --kan ändras till innerContent
             const emojiName = shuffleEmojis[i];
@@ -658,16 +676,6 @@ function getRandomCardIndices(cardCount) {
     return indices;
 }
 
-// Denna kod körs när sidan laddas - gömmer main-container
-document.addEventListener('DOMContentLoaded', function () {
-    // Om du vill visa registreringsmenyn när sidan laddas kan du kommentera bort den här raden
-    document.querySelector('.main-container').style.display = 'none';
-    document.querySelector('.pre-menu').style.display = 'none';
-    document.querySelector('.pvm-menu').style.display = 'none';
-    document.querySelector('.winner-notice').style.display = 'none';
-    document.querySelector('.draw-notice').style.display = 'none';
-    document.querySelector('.alert-notice').style.display = 'none';
-});
 
 
 //FEL CHECK-BUGG-TEST------------------
