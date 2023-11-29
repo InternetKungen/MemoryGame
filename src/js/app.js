@@ -96,13 +96,9 @@ function startGamePVP() {
     //Spela upp ljud
     mainMenuButtonSound2.play();
 
-     //Pausa menu-, starta game music
-    mainMenuMusic.pause();
-    gameMusic.play();
-
     gameLoaded = true;
 
-    startGame();
+    checkNameInput();
 }
 
 //Ladda PVM meny
@@ -130,13 +126,9 @@ function startGamePVM() {
     
     document.getElementById('player1-name').value = playerNamePVM;
 
-    //Pausa menu-, starta game music
-    mainMenuMusic.pause();
-    gameMusic.play();
-
     gameLoaded = true;
 
-    startGame();
+    checkNameInput();
 }
 
 //PVM Menu 'Start Game' knapp HARD
@@ -158,14 +150,51 @@ function startGamePVMHard() {
     
     //Play Klick button sound
     mainMenuButtonSound2.play();
-
-    //Pausa menu-, starta game music
-    mainMenuMusic.pause();
-    gameMusic.play();
     
     gameLoaded = true;
 
-    startGame();
+    checkNameInput();    
+}
+
+function checkNameInput() {
+    // Hämtar namnet på spelarna
+    const player1Name = document.getElementById('player1-name').value;
+    const player2Name = document.getElementById('player2-name').value;
+
+    console.log('Player 1 Name:', player1Name);
+    console.log('Player 2 Name:', player2Name);
+
+    if (player1Name && player2Name) {
+        // Om båda spelarnas namn finns, gå vidare till startGame()
+
+        //Pausa menu-, starta game music
+        mainMenuMusic.pause();
+        gameMusic.play();
+
+        startGame();
+    } else {
+        // Om något av spelarnas namn saknas, visa en varning
+        showAlertNotice();
+
+        //PVM - Rensa player2 namn
+        if (isComputerPlayer) {
+        document.getElementById('player2-name').value = '';
+        isComputerPlayer = false;
+        } 
+    }
+}
+
+
+function showAlertNotice() {
+    let alertNotice = document.querySelector(".alert-notice");
+
+    alertNotice.style.display = 'flex';
+
+    // Set a timeout to hide the notice after 3 seconds
+    setTimeout(() => {
+        alertNotice.style.display = 'none';
+        restartGame();
+    }, 1490);
 }
 
 
@@ -398,6 +427,7 @@ function restartGame() {
     //Reset History
     matchHistory = [];
     printMatchHistory();
+    memory = [];
 
     //Sätter spelarnas poäng till noll
     playerScores.player1 = 0;
@@ -533,7 +563,8 @@ function startGame() {
         // }
 
     } else {
-        alert('Please enter names for both players to start the game.');
+        // alert('Please enter names for both players to start the game.');
+        
     }
 }
 
@@ -632,6 +663,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.pvm-menu').style.display = 'none';
     document.querySelector('.winner-notice').style.display = 'none';
     document.querySelector('.draw-notice').style.display = 'none';
+    document.querySelector('.alert-notice').style.display = 'none';
 });
 
 

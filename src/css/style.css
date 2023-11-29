@@ -101,7 +101,7 @@ header h2 {
     background: transparent;
     border: 3px solid #f26c67;
     box-shadow: 0 0 14px hotpink;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
     animation: fadeInMenu 2s ease 1;
@@ -449,7 +449,7 @@ input {
 .draw-notice,
 .winner-notice {
     text-align: center;
-    background: linear-gradient(to bottom, #3be9f1 10%, #020121 80%, #3be9f1);
+    background: linear-gradient(to bottom,  #f26c67 10%, #cc1e70 80%, #99196c); 
     color: #fef6cd;
     padding: 25px;
     border-radius: 10px;
@@ -463,10 +463,6 @@ input {
     left: calc(50% - 100px);
     z-index: 4;
 }
-/* .draw-notice h3,
-.winner-notice h3 {
-    color: #020121;
-} */
 
 @keyframes fadeInOutNotice {
     0% {
@@ -489,6 +485,42 @@ input {
         opacity: 0;
         bottom: 70%;
         box-shadow: 0 0 14px hotpink;
+    }
+}
+
+.alert-notice {
+    text-align: center;
+    background: linear-gradient(to bottom,  #f26c67 10%, #cc1e70 80%, #99196c); 
+    color: #fef6cd;
+    padding: 25px;
+    border-radius: 10px;
+    border: 3px solid #f26c67;
+    box-shadow: 0 0 14px hotpink;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    animation: fadeInOutNoticeAlert 1.5s ease 1;
+    position: absolute;
+    left: calc(50% - 100px);
+    z-index: 4;
+}
+
+@keyframes fadeInOutNoticeAlert {
+    0% {
+        opacity: 0;
+        bottom: 30%;
+    }
+    25% {
+        opacity: 1;
+        bottom: 50%;
+    }
+    90% {
+        opacity: 1;
+        bottom: 50%;
+    }
+    100% {
+        opacity: 0;
+        bottom: 70%;
     }
 }
 
