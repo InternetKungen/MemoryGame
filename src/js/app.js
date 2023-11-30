@@ -91,6 +91,24 @@ mainMenuButtonSound3.volume = 0.9;
 // Starta ljudet
 mainMenuMusic.play();
 
+function showDefaultImage() {
+    document.querySelector('.showImageMain__default').style.display = 'flex';
+    document.querySelector('.showImageMain__PVP').style.display = 'none';
+    document.querySelector('.showImageMain__PVM').style.display = 'none';
+  }
+
+  function showPVPImage() {
+    document.querySelector('.showImageMain__default').style.display = 'none';
+    document.querySelector('.showImageMain__PVP').style.display = 'flex';
+    document.querySelector('.showImageMain__PVM').style.display = 'none';
+  }
+
+  function showPVMImage() {
+    document.querySelector('.showImageMain__default').style.display = 'none';
+    document.querySelector('.showImageMain__PVP').style.display = 'none';
+    document.querySelector('.showImageMain__PVM').style.display = 'flex';
+  }
+
 //Back to Main button
 function backToMain() {
     document.querySelector('.main-menu').style.display = 'flex';

@@ -79,10 +79,20 @@
             </div>
           </div>
           <div class="main-menu__button-container">
-            <button class="main-menu__option" onclick="loadPVPMenu()">
+            <button
+              class="main-menu__option"
+              onclick="loadPVPMenu()"
+              onmouseover="showPVPImage()"
+              onmouseout="showDefaultImage()"
+            >
               Player vs Player
             </button>
-            <button class="main-menu__option" onclick="loadPVMMenu()">
+            <button
+              class="main-menu__option"
+              onclick="loadPVMMenu()"
+              onmouseover="showPVMImage()"
+              onmouseout="showDefaultImage()"
+            >
               Player vs Machine
             </button>
           </div>
