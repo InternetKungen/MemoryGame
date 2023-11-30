@@ -221,6 +221,13 @@ header h2 {
     cursor: pointer;
 }
 
+.item img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    outline: 0.5px solid #00f7ff;
+}
+
 .item-back {
     /* content: '';*/
     /*position: absolute; */

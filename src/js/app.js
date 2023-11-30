@@ -1,14 +1,53 @@
-// Definiera emojis som ett objekt med tillhörande poäng och namn
-const emojis = {
-    flower: { name: "flower", image: "🌼", points: 10 },
-    car: { name: "car", image: "🚗", points: 20 },
-    clown: { name: "clown", image: "🤡", points: 15 },
-    monkey: { name: "monkey", image: "🐵", points: 25 },
-    diamond: { name: "diamond", image: "💎", points: 30 },
-    bomb: { name: "bomb", image: "💣", points: -10 },
-    fries: { name: "fries", image: "🍟", points: 8 },
-    mushroom: { name: "mushroom", image: "🍄", points: 12 }
+//Lista på kort
+const emojisAll = {
+    flower: { name: "flower", image: "src/img/flower.jpg", points: 10 },
+    car: { name: "car", image: "src/img/car.jpg", points: 20 },
+    clown: { name: "clown", image: "src/img/clown.jpg", points: 15 },
+    monkey: { name: "monkey", image: "src/img/monkey.jpg", points: 25 },
+    diamond: { name: "diamond", image: "src/img/diamond.jpg", points: 30 },
+    bomb: { name: "bomb", image: "src/img/happy-bomb.jpg", points: -10 },
+    fries: { name: "fries", image: "src/img/fries.jpg", points: 8 },
+    mushroom: { name: "mushroom", image: "src/img/mushroom.jpg", points: 12 },
+    alien: { name: "alien", image: "src/img/alien.jpg", points: 15 },
+    angel: { name: "angel", image: "src/img/angel.jpg", points: 25 },
+    bigDiamond: { name: "big diamond", image: "src/img/big-diamond.jpg", points: 55 },
+    blackhole: { name: "black hole", image: "src/img/blackhole.jpg", points: -20 },
+    burger: { name: "burger", image: "src/img/burger.jpg", points: 8 },
+    cat: { name: "cat", image: "src/img/cat.jpg", points: 10 },
+    comet: { name: "comet", image: "src/img/comet.jpg", points: 13 },
+    cosmicTree: { name: "cosmic tree", image: "src/img/cosmic-tree.jpg", points: 35 },
+    crystal: { name: "crystal", image: "src/img/crystal.jpg", points: 22 },
+    dog: { name: "dog", image: "src/img/dog.jpg", points: 10 },
+    doubleBurger: { name: "double burger", image: "src/img/double-burger.jpg", points: 10 },
+    galaxy: { name: "galaxy", image: "src/img/galaxy.jpg", points: 28 },
+    ghost: { name: "ghost", image: "src/img/ghost.jpg", points: 1 },
+    halo: { name: "halo", image: "src/img/halo.jpg", points: 16 },
+    icecream: { name: "ice cream", image: "src/img/icecream.jpg", points: 8 },
+    portal: { name: "portal", image: "src/img/portal.jpg", points: 29 },
+    rocket: { name: "rocket", image: "src/img/rocket.jpg", points: 19 },
+    soda: { name: "soda", image: "src/img/soda.jpg", points: 8 },
+    solarMonkey: { name: "solar monkey", image: "src/img/solar-monkey.jpg", points: 17 },
+    spaceCar: { name: "space car", image: "src/img/spacecar.jpg", points: 20 },
+    spaceman: { name: "space man", image: "src/img/spaceman.jpg", points: 25 },
+    starship: { name: "star ship", image: "src/img/starship.jpg", points: 35 },
+    treeOfLife: { name: "tree of life", image: "src/img/tree.jpg", points: 100 },
+    troll: { name: "troll", image: "src/img/troll.jpg", points: -100 },
+    ufo: { name: "ufo", image: "src/img/ufo.jpg", points: 50 },
+    unicorn: { name: "unicorn", image: "src/img/unicorn.jpg", points: 50 }
 };
+
+// Function to randomly select n items from a list
+function getRandomItems(list, n) {
+    // Shuffle the original list
+    const shuffledList = list.sort(() => Math.random() - 0.5);
+
+    // Return the first n items
+    return shuffledList.slice(0, n);
+}
+
+// Get 8 random emojis from the original emojisAll object
+let emojis = getRandomItems(Object.values(emojisAll), 8);
+
 
 // Denna kod körs först när sidan laddas - gömmer saker
 document.addEventListener('DOMContentLoaded', function () {
@@ -95,19 +134,19 @@ function showDefaultImage() {
     document.querySelector('.showImageMain__default').style.display = 'flex';
     document.querySelector('.showImageMain__PVP').style.display = 'none';
     document.querySelector('.showImageMain__PVM').style.display = 'none';
-  }
+}
 
-  function showPVPImage() {
+function showPVPImage() {
     document.querySelector('.showImageMain__default').style.display = 'none';
     document.querySelector('.showImageMain__PVP').style.display = 'flex';
     document.querySelector('.showImageMain__PVM').style.display = 'none';
-  }
+}
 
-  function showPVMImage() {
+function showPVMImage() {
     document.querySelector('.showImageMain__default').style.display = 'none';
     document.querySelector('.showImageMain__PVP').style.display = 'none';
     document.querySelector('.showImageMain__PVM').style.display = 'flex';
-  }
+}
 
 //Back to Main button
 function backToMain() {
@@ -239,24 +278,24 @@ const volumeIcon = document.querySelector('.volumeIcon');
 let isSoundOn = true;
 
 function toggleSound() {
-  if (isSoundOn) {
-    // Stäng av ljudet
-    mainMenuMusic.pause();
-    gameMusic.pause();
-    isSoundOn = false;
-    volumeIcon.src = './src/img/volume-off.png';
-  } else {
-    // Slå på ljudet
-    if (gameLoaded) {
-        gameMusic.play();
-    } else 
-    {
-    mainMenuMusic.play();
-    };
+    if (isSoundOn) {
+        // Stäng av ljudet
+        mainMenuMusic.pause();
+        gameMusic.pause();
+        isSoundOn = false;
+        volumeIcon.src = './src/img/volume-off.png';
+    } else {
+        // Slå på ljudet
+        if (gameLoaded) {
+            gameMusic.play();
+        } else 
+        {
+            mainMenuMusic.play();
+        };
 
-    isSoundOn = true;
-    volumeIcon.src = './src/img/volume-on.png';
-  }
+        isSoundOn = true;
+        volumeIcon.src = './src/img/volume-on.png';
+    }
 }
 
 // Aktiv spelare - toggle
@@ -312,8 +351,10 @@ function printMatchHistory() {
     //vad händer här? - en for loop - 
     matchHistory.forEach((match, index) => {
         const playerName = localStorage.getItem(`${match.player}Name`);
+        const emojiList = emojis[match.emojiName]; // Retrieve the emoji object
+        const emojiName = emojiList ? emojiList.name : match.emojiName; // Use emoji.name if available, otherwise use the original name
         const historyItem = document.createElement('div');
-        historyItem.textContent = `${index + 1}. ${playerName} found the ${match.emojiName}`;
+        historyItem.textContent = `${index + 1}. ${playerName} found the ${emojiName}`;
         historyContainer.appendChild(historyItem);
     });
 }
@@ -471,6 +512,12 @@ function restartGame() {
     //Tömmer array som representerar korten på plan
     emojisArray = [];
 
+    //Tömmer listan som kort hämtas från
+    emojis = {};
+
+    //Genererar ny lista
+    emojis = getRandomItems(Object.values(emojisAll), 8);
+
     //Tar bort korten från html .game
     const gameContainer = document.querySelector('.game');
     gameContainer.innerHTML = ``;
@@ -566,7 +613,13 @@ function startGame() {
             //fyller div med emoji från shuffleEmojis array. --kan ändras till innerContent
             const emojiName = shuffleEmojis[i];
             innerBox.dataset.name = emojiName; // Sätt dataset för att lagra namnet istället för innerHTML
-            itemFront.innerHTML = emojis[emojiName].image; // Använd image-attributet för att sätta in emoji
+
+            // itemFront.innerHTML = emojis[emojiName].image; // Använd image-attributet för att sätta in emoji
+            const imgElement = document.createElement('img');
+            imgElement.src = emojis[emojiName].image;
+
+            // Add the image to the itemFront element
+            itemFront.appendChild(imgElement);
 
             //On-click på box/div-elementet...
             box.onclick = function () {
