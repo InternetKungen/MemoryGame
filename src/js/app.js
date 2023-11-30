@@ -5,6 +5,7 @@ const emojisAll = {
     clown: { name: "clown", image: "src/img/clown.jpg", points: 15 },
     monkey: { name: "monkey", image: "src/img/monkey.jpg", points: 25 },
     diamond: { name: "diamond", image: "src/img/diamond.jpg", points: 30 },
+    death: { name: "death", image: "src/img/death.jpg", points: -30 },
     bomb: { name: "bomb", image: "src/img/happy-bomb.jpg", points: -10 },
     fries: { name: "fries", image: "src/img/fries.jpg", points: 8 },
     mushroom: { name: "mushroom", image: "src/img/mushroom.jpg", points: 12 },

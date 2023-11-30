@@ -276,6 +276,15 @@ header h2 {
     }
 } */
 
+.item-back:hover {
+    background: linear-gradient(72deg, #F26C67, #FEF6CD),
+                url('../img/card_back_hover.jpg');
+    background-blend-mode:color;
+    background-size: cover;
+    /* transition: transform 5s ease-in-out; */
+    backface-visibility: hidden;
+    outline: 1px solid #f26c677c;
+}
 .boxOpen {
     transform: rotateY(180deg);
     transition: transform 0.5s;
