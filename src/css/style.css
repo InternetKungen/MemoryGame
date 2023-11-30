@@ -151,16 +151,18 @@ header h2 {
 }
 
 .game {
-    width: 440px;
-    height: 440px;
+    width: 675px;
+    height: 555px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 11px;
     transform-style: preserve-3d;
     perspective: 800px;
     justify-content: center;
     animation: sizeAnimationOneIntro 0.5s ease-in 1;
     z-index: 2;
+    padding: 5px;
+    flex-direction: column;
 }
 
 .item-outer-container {
@@ -247,7 +249,7 @@ header h2 {
     background-size: cover;
     transition: transform 5s ease-in-out;
     backface-visibility: hidden;
-    outline: 3px solid #f26c677c;
+    outline: 1px solid #f26c677c;
 }
 
 .item-inner-container:hover {
@@ -304,8 +306,9 @@ header h2 {
 }
 
 .score-board-container {
-    height: 460px;
+    height: 566px;
     width: 300px;
+    /* background: #020121; */
     background: #020121;
     display: flex;
     justify-content: space-between;
@@ -333,7 +336,7 @@ h3 {
 
 .history {
     flex-grow: 1;
-    height: 300px;
+    height: 360px;
     width: 250px;
     background: linear-gradient(to bottom, #000, #020121);
     color: #f26c67;
@@ -345,6 +348,7 @@ h3 {
     /* border: 2px solid #F26C67; */
     /* box-shadow: 0 0 1px #F26C67; */
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .history h4 {
@@ -355,46 +359,64 @@ h3 {
 }
 
 .history-event {
-    margin-top: 5px;
+    margin-top: 4px;
     color: #3be8f1e3;
 }
 .history-event::first-letter {
-    font-size: 0.7em;
-    color: #f26c67;
+    /* font-size: 0.7em; */
+    /* color: #3be8f12c; */
+    letter-spacing: -2px;
 }
-
 
 .history-event:nth-child(3) {
     color: #3be8f1;
 }
 .history-event:nth-child(4) {
-    color: #3be8f1ea;
+    color: #3be8f1ec;
 }
 .history-event:nth-child(5) {
-    color: #3be8f1c7;
+    color: #3be8f1d7;
 }
 .history-event:nth-child(6) {
-    color: #3be8f1b7;
+    color: #3be8f1be;
 }
 .history-event:nth-child(7) {
-    color: #3be8f1a6;
+    color: #3be8f1a4;
 }
 .history-event:nth-child(8) {
-    color: #3be8f198;
+    color: #3be8f18e;
 }
 .history-event:nth-child(8) {
-    color: #3be8f18a;
+    color: #3be8f180;
 }
 .history-event:nth-child(9) {
-    color: #3be8f173;
+    color: #3be8f16e;
 }
-/*extra*/
 .history-event:nth-child(10) {
-    color: #3be8f167;
+    color: #3be8f162;
 }
 .history-event:nth-child(11) {
-    color: #3be8f15b;
+    color: #3be8f156;
 }
+.history-event:nth-child(12) {
+    color: #3be8f148;
+}
+.history-event:nth-child(13) {
+    color: #3be8f13d;
+}
+.history-event:nth-child(14) {
+    color: #3be8f12a;
+}
+.history-event:nth-child(15) {
+    color: #3be8f11a;
+}
+.history-event:nth-child(16) {
+    color: #3be8f115;
+}
+.history-event:nth-child(17) {
+    color: #3be8f110;
+}
+
 
 
 

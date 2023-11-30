@@ -19,6 +19,7 @@ const emojisAll = {
     crystal: { name: "crystal", image: "src/img/crystal.jpg", points: 22 },
     dog: { name: "dog", image: "src/img/dog.jpg", points: 10 },
     doubleBurger: { name: "double burger", image: "src/img/double-burger.jpg", points: 10 },
+    deamon: { name: "deamon", image: "src/img/deamon.jpg", points: -10 },
     galaxy: { name: "galaxy", image: "src/img/galaxy.jpg", points: 28 },
     ghost: { name: "ghost", image: "src/img/ghost.jpg", points: 1 },
     halo: { name: "halo", image: "src/img/halo.jpg", points: 16 },
@@ -46,7 +47,7 @@ function getRandomItems(list, n) {
 }
 
 // Get 8 random emojis from the original emojisAll object
-let emojis = getRandomItems(Object.values(emojisAll), 8);
+let emojis = getRandomItems(Object.values(emojisAll), 15);
 
 
 // Denna kod körs först när sidan laddas - gömmer saker
@@ -517,7 +518,7 @@ function restartGame() {
     emojis = {};
 
     //Genererar ny lista
-    emojis = getRandomItems(Object.values(emojisAll), 8);
+    emojis = getRandomItems(Object.values(emojisAll), 15);
 
     //Tar bort korten från html .game
     const gameContainer = document.querySelector('.game');
