@@ -121,14 +121,14 @@ header h2 {
 
 .score-buttons-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: center;
     margin-bottom: 3px;
 }
 
 .play-again,
 .reset {
-    padding: 15px 20px;
+    /* padding: 15px 20px; */
     color: #fef6cd;
     background: linear-gradient(to bottom, #f26c67,#cc1e70, #99196c);
     border: 1px solid #c3166a;
@@ -139,7 +139,8 @@ header h2 {
     cursor: pointer;
     font-weight: 600;
     height: 3em;
-    margin: 10px;
+    width: 129px;
+    margin: 5px 6px 10px 6px;
 }
 
 .play-again:focus,
