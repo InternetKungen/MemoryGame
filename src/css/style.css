@@ -131,7 +131,7 @@ header h2 {
     /* padding: 15px 20px; */
     color: #fef6cd;
     background: linear-gradient(to bottom, #f26c67,#cc1e70, #99196c);
-    border: 1px solid #c3166a;
+    border: none;
     border-radius: 8px;
     font-size: 0.9em;
     letter-spacing: 0.1em;
@@ -343,7 +343,7 @@ h3 {
     align-items:baseline;
     border-radius: 12px;
     /* border: 2px solid #F26C67; */
-    box-shadow: 0 0 1px #F26C67;
+    /* box-shadow: 0 0 1px #F26C67; */
     margin-bottom: 10px;
 }
 
@@ -353,6 +353,52 @@ h3 {
     text-align: center;
     text-transform: uppercase;
 }
+
+.history-event {
+    margin-top: 5px;
+    color: #3be8f1e3;
+}
+.history-event::first-letter {
+    font-size: 0.7em;
+    color: #f26c67;
+}
+
+
+.history-event:nth-child(3) {
+    color: #3be8f1;
+}
+.history-event:nth-child(4) {
+    color: #3be8f1ea;
+}
+.history-event:nth-child(5) {
+    color: #3be8f1c7;
+}
+.history-event:nth-child(6) {
+    color: #3be8f1b7;
+}
+.history-event:nth-child(7) {
+    color: #3be8f1a6;
+}
+.history-event:nth-child(8) {
+    color: #3be8f198;
+}
+.history-event:nth-child(8) {
+    color: #3be8f18a;
+}
+.history-event:nth-child(9) {
+    color: #3be8f173;
+}
+/*extra*/
+.history-event:nth-child(10) {
+    color: #3be8f167;
+}
+.history-event:nth-child(11) {
+    color: #3be8f15b;
+}
+
+
+
+
 
 .line-thing {
     display: block;
@@ -449,6 +495,8 @@ label {
     display: block;
     margin-bottom: 5px;
     font-size: 1.3em;
+    text-transform: uppercase;
+    text-align: start;
 }
 
 input {
@@ -457,6 +505,7 @@ input {
     margin-bottom: 15px;
     border-radius: 7px;
     border: 2px solid #f26c67;
+    font-size: 1.8em;
 }
 
 .player {
@@ -473,6 +522,9 @@ input {
     color: #c8ff00; 
     font-weight: bold;
     animation: sizeAnimation 0.8s ease-in-out infinite, sizeAnimationOne 0.8s ease-in-out 1;
+    border-radius: 8px;
+    padding: 0 8px 0 8px;
+    font-size: 1em;
 }
 
 @keyframes sizeAnimation {

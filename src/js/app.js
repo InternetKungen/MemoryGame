@@ -354,6 +354,7 @@ function printMatchHistory() {
         const emojiList = emojis[match.emojiName]; // Retrieve the emoji object
         const emojiName = emojiList ? emojiList.name : match.emojiName; // Use emoji.name if available, otherwise use the original name
         const historyItem = document.createElement('div');
+        historyItem.classList.add('history-event');
         historyItem.textContent = `${index + 1}. ${playerName} found the ${emojiName}`;
         historyContainer.appendChild(historyItem);
     });
