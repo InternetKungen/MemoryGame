@@ -405,6 +405,7 @@ function handleMatchedPair() {
             openCards.forEach((card, index) => {
                     card.classList.remove('boxOpen');
                     card.querySelector('.item').style.backfaceVisibility = 'visible';
+                    card.querySelector('.item').style.cursor = 'default';
             });
 
             //Spela ljud - success
@@ -625,11 +626,34 @@ function startGame() {
             itemFront.appendChild(imgElement);
 
             //On-click på box/div-elementet...
-            box.onclick = function () {
+            // box.onclick = function () {
+            //     console.log('Card clicked!');
+            //     // if (isComputerPlayer && blockOnClick) {
+            //     //     return; // Blockera klick om det är datorns tur
+            //     // }
+            //     //spela klick-ljud
+            //     clickSound.play();
+
+            //     //spela öppna kort ljud
+            //     flipCard.play();
+
+            //     //lägg till class 'boxOpen' på div-elementet
+            //     innerBox.classList.add('boxOpen');
+                
+            //     //Anropa funktionen direkt utan timeout
+            //     handleMatchedPair();
+                
+            // }
+            //On-click på box/div-elementet...
+            box.onclick = handleBoxClick;
+
+            function handleBoxClick() {
                 console.log('Card clicked!');
-                // if (isComputerPlayer && blockOnClick) {
-                //     return; // Blockera klick om det är datorns tur
-                // }
+
+                if (innerBox.classList.contains('boxMatch')) {
+                    // If it's matched, remove the onclick function
+                    box.onclick = null;
+                } else {
                 //spela klick-ljud
                 clickSound.play();
 
@@ -639,11 +663,13 @@ function startGame() {
                 //lägg till class 'boxOpen' på div-elementet
                 innerBox.classList.add('boxOpen');
                 
-                //Anropa funktionen direkt utan timeout
-                handleMatchedPair();
+                // Check if the box has the class 'boxMatched'
                 
+                    // If not matched, proceed with your existing functionality
+                    handleMatchedPair();
+                }
             }
-
+            
             gameContainer.appendChild(box);
         }
 
